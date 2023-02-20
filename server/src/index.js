@@ -1,14 +1,23 @@
 import dotenv from 'dotenv'
-dotenv.config();
 
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from '../swagger.js';
 import session from 'express-session';
 import express from 'express';
+import cors  from 'cors';
+import passport from 'passport';
+
+dotenv.config();
 
 const app = express();
+app.use(cors());
 
-import passport from 'passport';
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+  });
+
+
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -63,12 +72,11 @@ passport.use(githubStrategy);
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
 
+//add 'auth' here instead of on every routes in the auth index.js
+app.use(authRoutes)
+
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
-  console.log(process.env.GOOGLE_CLIENT_ID)
-  console.log(process.env.GITHUB_CLIENT_ID)
 });
-
-//add 'auth' here instead of on every routes in the auth index.js
-app.use(authRoutes)

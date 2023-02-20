@@ -1,9 +1,9 @@
 import express from 'express';
 import passport from 'passport';
-
+import cors from 'cors';
 const router = express.Router();
 
-router.get('/',
+router.get('/', cors(),
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 

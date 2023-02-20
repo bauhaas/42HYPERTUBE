@@ -12,10 +12,6 @@ import axios from "axios";
 import { AlertContext } from "../../contexts/alert";
 import { Alert } from "./Components/Alert";
 import { API_BASE_URL } from '/src/api/api';
-// import Logo from '/src/assets/42logo.svg'
-// import { ReactComponent as Logo } from '/src/assets/42logo.svg';
-
-
 
 export const Signin = () => {
 
@@ -30,7 +26,8 @@ export const Signin = () => {
 
   const ThirdPartyAuthentication = (method) => {
     console.log(method)
-    axios.post(`${API_BASE_URL}/auth/${method}`, {})
+
+    axios.get(`${API_BASE_URL}/auth/${method}`, {})
       .then(response => {
         console.log(response);
       })
