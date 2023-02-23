@@ -73,7 +73,7 @@ passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
 
 //add 'auth' here instead of on every routes in the auth index.js
-app.use(authRoutes)
+app.use('/auth', authRoutes)
 
 
 const port = process.env.PORT || 3000;

@@ -24,17 +24,22 @@ export const Signin = () => {
     console.log(`Submitted login: ${login} and password: ${password}`);
   };
 
-  const ThirdPartyAuthentication = (method) => {
-    console.log(method)
+  // const ThirdPartyAuthentication = (method) => {
+  //   console.log(method)
 
-    axios.get(`${API_BASE_URL}/auth/${method}`, {})
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        setAlert(error.message);
-      });
-  };
+  //   axios.get(`${API_BASE_URL}/auth/${method}`, {})
+  //     .then(response => {
+  //       console.log(response);
+  //     })
+  //     .catch(error => {
+  //       setAlert(error.message);
+  //     });
+  // };
+
+  const ThirdPartyAuthentication = (method) => {
+  console.log(method);
+  window.location.href = `${API_BASE_URL}/auth/${method}`;
+};
 
   // make a layout to add Alert on everypage if it's needed
   return (
