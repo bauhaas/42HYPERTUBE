@@ -1,25 +1,52 @@
 export default {
   "swagger": "2.0",
   "info": {
-    "title": "Example API",
+    "title": "Hypertube API",
     "version": "1.0.0"
   },
   "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
-    "/": {
+    "/users": {
       "get": {
-        "description": "Returns Hello World",
+        "tags": [
+          "users"
+        ],
+        "summary": "Returns list of all users",
+        "description": "Returns a list of users with their id and their username",
+        "parameters": [
+        ],
+        "responses": {
+        }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Returns details of a specific user",
+        "description": "Returns username, email address, profile picture URL of a specific user",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name":"id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Successful response",
+            "description": "Successful operation",
             "schema": {
-              "type": "string",
-              "example": "Hello World!"
+              "$ref": "#/definitions/User"
             }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "404": {
+            "description": "Element not found"
           }
         }
       }
@@ -82,6 +109,28 @@ export default {
         "responses": {
           // Github-specific responses here
         }
+      }
+    }
+  },
+    "definitions": {
+    "User": {
+      "type": "object",
+      "required": [
+        "email"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "John"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "john.doe@gmail.com",
+        },
       }
     }
   }

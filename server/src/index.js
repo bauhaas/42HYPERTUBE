@@ -12,6 +12,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
+
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
@@ -21,8 +23,19 @@ app.use(function(req, res, next) {
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+
+import db from "./models/index.js";
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
+
+  // drop the table if it already exists
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
 });
 
 app.get('/login', function(req, res){
@@ -66,15 +79,15 @@ import githubStrategy from './strategies/github.js';
 import facebookStrategy from './strategies/facebook.js'
 import fortytwoStrategy from './strategies/fortytwo.js'
 import authRoutes from './routes/auth/index.js';
+import usersRoutes  from './routes/users/users.js'
 
 passport.use(googleStrategy);
 passport.use(githubStrategy);
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
 
-//add 'auth' here instead of on every routes in the auth index.js
 app.use('/auth', authRoutes)
-
+app.use('/users', usersRoutes)
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
