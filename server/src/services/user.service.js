@@ -1,5 +1,5 @@
-import db from "../models/index.js";
-import { NotFoundError } from "#utils/errorHandler";
+import db from '../models/index.js';
+import { NotFoundError } from '#utils/errorHandler';
 
 const Users = db.users;
 
@@ -10,7 +10,8 @@ export const findAll = async () => {
 
 export const findOne = async (id) => {
   const data = await Users.findByPk(id);
-  if (!data)
-    throw new NotFoundError("User not found");
+  if (!data) {
+    throw new NotFoundError('User not found');
+  }
   return data;
 };

@@ -1,16 +1,16 @@
 const userModel = (sequelize, Sequelize) => {
-  const User = sequelize.define("User", {
+  const User = sequelize.define('User', {
     firstName: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     lastName: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
     email: {
       type: Sequelize.STRING,
-      allowNull: false
+      allowNull: false,
     },
   });
 

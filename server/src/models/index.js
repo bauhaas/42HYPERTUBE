@@ -1,6 +1,6 @@
-import { Sequelize } from "sequelize";
-import userModel from "#models/user";
-import dbConfig from "#config/db";
+import { Sequelize } from 'sequelize';
+import userModel from '#models/user';
+import dbConfig from '#config/db';
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -10,8 +10,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
     acquire: dbConfig.pool.acquire,
-    idle: dbConfig.pool.idle
-  }
+    idle: dbConfig.pool.idle,
+  },
 });
 
 const db = {};

@@ -1,7 +1,7 @@
-import express from "express";
+import express from 'express';
 import users from '../../controllers/user.controller.js';
 
-const router = express.Router()
+const router = express.Router();
 
 router.get('/', users.findAll);
 router.get('/:id', users.findOne);

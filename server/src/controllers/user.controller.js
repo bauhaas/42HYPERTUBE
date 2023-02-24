@@ -1,11 +1,11 @@
-import * as userService from "#services/user";
+import * as userService from '#services/user';
 import {
   BadRequestError,
   UnauthorizedError,
   ForbiddenError,
   NotFoundError,
   InternalServerError,
-  sendErrorResponse
+  sendErrorResponse,
 } from '#utils/errorHandler';
 
 export default {
@@ -26,5 +26,5 @@ export default {
     } catch (err) {
       sendErrorResponse(res, err);
     }
-  }
-}
+  },
+};

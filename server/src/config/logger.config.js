@@ -5,10 +5,9 @@ addColors({
   error: 'bold red',
   warn: 'yellow',
   info: 'blue',
-  http:'green bold',
-  verbose:'cyan',
+  http: 'green bold',
+  verbose: 'cyan',
   debug: 'green',
-
 });
 
 const myCustomFormat = format.combine(
@@ -16,10 +15,11 @@ const myCustomFormat = format.combine(
   timestamp({ format: 'DD-MM-YYYY HH:MM:SS' }),
   printf(
     (info) =>
-      `${info.label} ${info.timestamp} - [${info.level.toUpperCase()}] ${info.message}`
+      `${info.label} ${info.timestamp} - [${info.level.toUpperCase()}] ${
+        info.message
+      }`,
   ),
   colorize({ all: true }),
-
 );
 
 const logger = createLogger({
