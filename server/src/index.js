@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from '../swagger.js';
 import session from 'express-session';
@@ -12,32 +11,27 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
   });
 
-
-
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
 import db from "./models/index.js";
-import logger from './config/logger.config.js';
-// db.sequelize.sync()
-//   .then(() => {
-//     console.log("Synced db.");
-//   })
-//   .catch((err) => {
-//     console.log("Failed to sync db: " + err.message);
-//   });
+import logger from '#config/logger'
+db.sequelize.sync()
+  .then(() => {
+    console.log("Synced db.");
+  })
+  .catch((err) => {
+    console.log("Failed to sync db: " + err.message);
+  });
 
-//   // drop the table if it already exists
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-// });
+  // drop the table if it already exists
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 app.get('/login', function(req, res){
   res.send("login");
@@ -70,17 +64,18 @@ app.get('/logout', function(req, res){
     if (err) {
       // handle error
     }
-
     res.redirect('/');
   });
 });
 
-import googleStrategy from './strategies/google.js';
-import githubStrategy from './strategies/github.js';
-import facebookStrategy from './strategies/facebook.js'
-import fortytwoStrategy from './strategies/fortytwo.js'
-import authRoutes from './routes/auth/index.js';
-import usersRoutes  from './routes/users/users.js'
+
+import googleStrategy from '#strategies/google';
+import githubStrategy from '#strategies/github';
+import facebookStrategy from '#strategies/facebook';
+import fortytwoStrategy from '#strategies/fortytwo';
+
+import usersRoutes from '#routes/users';
+import authRoutes from '#routes/auth';
 
 passport.use(googleStrategy);
 passport.use(githubStrategy);
@@ -92,5 +87,5 @@ app.use('/users', usersRoutes)
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  logger.info(`Server running at http://localhost:${port}`);
 });

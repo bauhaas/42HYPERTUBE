@@ -1,5 +1,4 @@
-import * as userService from "../services/user.service.js";
-
+import * as userService from "#services/user";
 import {
   BadRequestError,
   UnauthorizedError,
@@ -7,7 +6,7 @@ import {
   NotFoundError,
   InternalServerError,
   sendErrorResponse
-} from '../utils/errorHandler.js';
+} from '#utils/errorHandler';
 
 export default {
   findAll: async (req, res) => {

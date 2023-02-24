@@ -39,5 +39,16 @@
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
+  },
+  "imports": {
+    "#config/*":"./src/config/*.config.js",
+    "#controllers/*":"./src/controllers/*.controller.js",
+    "#middlewares/*":"./src/middlewares/*.js",
+    "#models/*":"./src/models/*.model.js",
+    "#routes/auth": "./src/routes/auth/index.js",
+    "#routes/*":"./src/routes/*/*.js",
+    "#services/*":"./src/services/*.service.js",
+    "#strategies/*":"./src/strategies/*.js",
+    "#utils/*":"./src/utils/*.js"
   }
 }

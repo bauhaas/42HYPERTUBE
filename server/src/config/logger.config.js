@@ -2,13 +2,16 @@ import { createLogger, format, transports, addColors } from 'winston';
 const { combine, timestamp, label, printf, colorize } = format;
 
 addColors({
-  info: 'blue',
-  warn: 'yellow',
   error: 'bold red',
+  warn: 'yellow',
+  info: 'blue',
+  http:'green bold',
+  verbose:'cyan',
   debug: 'green',
+
 });
 
-let myCustomFormat = format.combine(
+const myCustomFormat = format.combine(
   label({ label: '[nodejs-api]' }),
   timestamp({ format: 'DD-MM-YYYY HH:MM:SS' }),
   printf(

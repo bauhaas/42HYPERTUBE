@@ -1,5 +1,5 @@
 import db from "../models/index.js";
-import { NotFoundError } from "../utils/errorHandler.js";
+import { NotFoundError } from "#utils/errorHandler";
 
 const Users = db.users;
 

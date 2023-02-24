@@ -2,7 +2,6 @@ import { Strategy as FacebookStrategy } from 'passport-facebook';
 import dotenv from 'dotenv'
 dotenv.config();
 
-
 export default new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,

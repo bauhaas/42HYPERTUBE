@@ -1,4 +1,4 @@
-export default {
+const dbConfig = {
   HOST: "localhost",
   USER: "admin",
   PASSWORD: "admin",
@@ -11,3 +11,5 @@ export default {
     idle: 10000
   }
 };
+
+export default dbConfig;
