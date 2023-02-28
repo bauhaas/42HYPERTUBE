@@ -1,6 +1,5 @@
 import { setup_db } from './';
 import { Sequelize, DataTypes } from 'sequelize';
-//import { mocked } from 'jest';
 
 jest.mock('sequelize', () => {
   const mSequelize = {
@@ -16,20 +15,17 @@ jest.mock('sequelize', () => {
 
 const mSequelizeContext = new Sequelize();
 
-describe('64648688', () => {
+describe('db setup', () => {
   afterAll(() => {
     jest.resetAllMocks();
   });
 
   it('should setup db correctly', async () => {
-    const mTable1 = { hasMany: jest.fn(), sync: jest.fn() };
-    const mTable2 = { sync: jest.fn() };
+    const usersTable = { sync: jest.fn() };
     jest.mocked(mSequelizeContext.define).mockImplementation((modelName) => {
       switch (modelName) {
-        case 'table1':
-          return mTable1;
-        case 'table2':
-          return mTable2;
+        case 'User':
+          return usersTable;
       }
     });
     await setup_db(':memory:');
@@ -38,26 +34,6 @@ describe('64648688', () => {
       storage: ':memory:',
     });
     expect(mSequelizeContext.authenticate).toBeCalled();
-    expect(mSequelizeContext.define).toBeCalledWith(
-      'table1',
-      {
-        fieldName_1: {
-          type: DataTypes.STRING,
-        },
-      },
-      { tableName: 'table1' },
-    );
-    expect(mSequelizeContext.define).toBeCalledWith(
-      'table2',
-      {
-        fieldName_1: {
-          type: DataTypes.STRING,
-        },
-      },
-      { tableName: 'table2' },
-    );
-    expect(mTable1.hasMany).toBeCalledWith(mTable2);
-    expect(mTable1.sync).toBeCalledTimes(1);
-    expect(mTable2.sync).toBeCalledTimes(1);
+    expect(usersTable.sync).toBeCalledTimes(1);
   });
 });
