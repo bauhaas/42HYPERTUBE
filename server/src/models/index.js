@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize';
-import userModel from '#models/user';
 import dbConfig from '#config/db';
+import commentModel from '#models/comment';
+import userModel from '#models/user';
+import movieModel from '#models/movie';
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -20,5 +22,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.users = userModel(sequelize, Sequelize);
+db.comments = commentModel(sequelize, Sequelize);
+db.movies = movieModel(sequelize, Sequelize);
 
 export default db;
