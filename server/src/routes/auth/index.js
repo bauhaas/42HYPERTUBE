@@ -1,15 +1,15 @@
 import express from 'express';
 
-import googleAuth from './google.js';
-import githubAuth from './github.js';
 import facebookAuth from './facebook.js';
 import fortytwoAuth from './fortytwo.js';
+import githubAuth from './github.js';
+import googleAuth from './google.js';
 
 const router = express.Router();
 
-router.use('/google', googleAuth);
 router.use('/facebook', facebookAuth);
-router.use('/github', githubAuth);
 router.use('/42', fortytwoAuth);
+router.use('/github', githubAuth);
+router.use('/google', googleAuth);
 
 export default router;

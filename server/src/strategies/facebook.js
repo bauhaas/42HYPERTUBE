@@ -1,5 +1,6 @@
-import { Strategy as FacebookStrategy } from 'passport-facebook';
 import dotenv from 'dotenv';
+import { Strategy as FacebookStrategy } from 'passport-facebook';
+
 dotenv.config();
 
 export default new FacebookStrategy(

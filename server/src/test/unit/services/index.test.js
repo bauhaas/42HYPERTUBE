@@ -1,5 +1,6 @@
+import { DataTypes, Sequelize } from 'sequelize';
+
 import { setup_db } from './';
-import { Sequelize, DataTypes } from 'sequelize';
 
 jest.mock('sequelize', () => {
   const mSequelize = {

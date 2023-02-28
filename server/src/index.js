@@ -1,11 +1,21 @@
-import dotenv from 'dotenv';
-import swaggerUi from 'swagger-ui-express';
-import swaggerDocument from '../swagger.js';
-import session from 'express-session';
-import express from 'express';
-import cors from 'cors';
-import passport from 'passport';
 import bodyParser from 'body-parser';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import session from 'express-session';
+import passport from 'passport';
+import swaggerUi from 'swagger-ui-express';
+
+import logger from '#config/logger';
+import authRoutes from '#routes/auth';
+import usersRoutes from '#routes/users';
+import facebookStrategy from '#strategies/facebook';
+import fortytwoStrategy from '#strategies/fortytwo';
+import githubStrategy from '#strategies/github';
+import googleStrategy from '#strategies/google';
+
+import swaggerDocument from '../swagger.js';
+import db from './models/index.js';
 
 dotenv.config();
 
@@ -23,8 +33,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-import db from './models/index.js';
-import logger from '#config/logger';
 db.sequelize
   .sync()
   .then(() => {
@@ -74,14 +82,6 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
   });
 });
-
-import googleStrategy from '#strategies/google';
-import githubStrategy from '#strategies/github';
-import facebookStrategy from '#strategies/facebook';
-import fortytwoStrategy from '#strategies/fortytwo';
-
-import usersRoutes from '#routes/users';
-import authRoutes from '#routes/auth';
 
 passport.use(googleStrategy);
 passport.use(githubStrategy);

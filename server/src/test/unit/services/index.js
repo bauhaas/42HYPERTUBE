@@ -1,4 +1,5 @@
-import { Sequelize, DataTypes } from 'sequelize';
+import { DataTypes, Sequelize } from 'sequelize';
+
 import userModel from '#models/user';
 
 export const setup_db = async (db_path) => {

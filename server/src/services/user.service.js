@@ -1,6 +1,7 @@
-import db from '../models/index.js';
-import { NotFoundError } from '#utils/errorHandler';
 import logger from '#config/logger';
+import { NotFoundError } from '#utils/errorHandler';
+
+import db from '../models/index.js';
 
 export const findAll = async () => {
   const users = await db.users.findAll();

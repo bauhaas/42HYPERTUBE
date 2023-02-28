@@ -1,8 +1,9 @@
 import { Sequelize } from 'sequelize';
+
 import dbConfig from '#config/db';
 import commentModel from '#models/comment';
-import userModel from '#models/user';
 import movieModel from '#models/movie';
+import userModel from '#models/user';
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,

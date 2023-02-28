@@ -1,13 +1,13 @@
+import logger from '#config/logger';
 import * as userService from '#services/user';
 import {
   BadRequestError,
-  UnauthorizedError,
   ForbiddenError,
-  NotFoundError,
   InternalServerError,
+  NotFoundError,
   sendErrorResponse,
+  UnauthorizedError,
 } from '#utils/errorHandler';
-import logger from '#config/logger';
 
 export default {
   findAll: async (req, res) => {

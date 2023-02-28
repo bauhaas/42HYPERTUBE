@@ -1,6 +1,7 @@
+import cors from 'cors';
 import express from 'express';
 import passport from 'passport';
-import cors from 'cors';
+
 const router = express.Router();
 
 router.get(

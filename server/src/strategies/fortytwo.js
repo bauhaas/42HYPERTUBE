@@ -1,5 +1,6 @@
-import { Strategy as FortyTwoStrategy } from 'passport-42';
 import dotenv from 'dotenv';
+import { Strategy as FortyTwoStrategy } from 'passport-42';
+
 dotenv.config();
 
 export default new FortyTwoStrategy(
