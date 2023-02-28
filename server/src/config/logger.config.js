@@ -15,9 +15,9 @@ const myCustomFormat = format.combine(
   timestamp({ format: 'DD-MM-YYYY HH:MM:SS' }),
   printf(
     (info) =>
-      `${info.label} ${info.timestamp} - [${info.level.toUpperCase()}] ${
-        info.message
-      }`,
+      `${info.label} ${
+        info.timestamp
+      } - [${info.level.toUpperCase()}] ${JSON.stringify(info.message)}`,
   ),
   colorize({ all: true }),
 );

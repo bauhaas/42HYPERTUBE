@@ -5,16 +5,21 @@ import session from 'express-session';
 import express from 'express';
 import cors from 'cors';
 import passport from 'passport';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+// Use the body-parser middleware to parse request bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -30,9 +35,9 @@ db.sequelize
   });
 
 // drop the table if it already exists
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log('Drop and re-sync db.');
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  console.log('Drop and re-sync db.');
+});
 
 app.get('/login', function (req, res) {
   res.send('login');

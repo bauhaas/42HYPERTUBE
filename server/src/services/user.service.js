@@ -1,15 +1,21 @@
 import db from '../models/index.js';
 import { NotFoundError } from '#utils/errorHandler';
+import logger from '#config/logger';
 
 export const findAll = async () => {
-  const data = await db.users.findAll();
-  return data;
+  const users = await db.users.findAll();
+  return users;
 };
 
 export const findOne = async (id) => {
-  const data = await db.users.findByPk(id);
-  if (!data) {
+  const user = await db.users.findByPk(id);
+  if (!user) {
     throw new NotFoundError('User not found');
   }
-  return data;
+  return user;
+};
+
+export const create = async (userData) => {
+  const newUser = await db.users.create(userData);
+  return newUser;
 };

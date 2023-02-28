@@ -1,3 +1,5 @@
+import logger from '#config/logger';
+
 class BadRequestError extends Error {
   //400
   constructor(message) {
@@ -34,6 +36,7 @@ class InternalServerError extends Error {
 }
 
 const sendErrorResponse = (res, err) => {
+  logger.error(err.message);
   if (err instanceof BadRequestError) return res.status(400).send(err.message);
   else if (err instanceof UnauthorizedError)
     return res.status(401).send(err.message);
