@@ -46,10 +46,6 @@ export const Test = () => {
     }
   };
 
-  const tt = (t) => {
-    setUsers(t);
-  };
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -69,8 +65,8 @@ export const Test = () => {
     if (Object.values(newErrors).every((error) => error === '')) {
       getUsers()
         .then((response) => {
-          console.log(response.data, 'lol');
-          setUsers(response.data);
+          console.log(response);
+          setUsers(response);
         })
         .catch((error) => {
           console.error(error);
@@ -134,7 +130,7 @@ export const Test = () => {
             </Link>
           </div>
           <div className="bg-red-500 w-1/2">
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4" data-cy="users-map">
               {users &&
                 users.map((user, index) => (
                   <div

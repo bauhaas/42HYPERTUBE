@@ -1,3 +1,5 @@
+import users from '../fixtures/users.json';
+
 describe('/test page', () => {
   beforeEach(() => {
     cy.visit('/test');
@@ -65,16 +67,20 @@ describe('/test page', () => {
     cy.wait('@getUsers').its('response.statusCode').should('eq', 200);
 
     cy.get('@getUsers')
-      .its('response.body.users')
+      .its('response.body')
       .should('have.length', 3)
       .each((user) => {
         expect(user).to.have.property('firstName');
         expect(user).to.have.property('lastName');
         expect(user).to.have.property('id');
-      })
-      .then((users) => {
-        // Pass the answer to my state
-        // cy.window().its('tt').invoke(users)
       });
+
+    cy.fixture('users').then((usersFixture) => {
+      expect(users, 'the same data').to.deep.equal(usersFixture);
+
+      cy.get('[data-cy="users-map"]')
+        .children()
+        .should('have.length', users.length);
+    });
   });
 });
