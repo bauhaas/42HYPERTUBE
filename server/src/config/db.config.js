@@ -2,7 +2,7 @@ const dbConfig = {
   HOST: 'localhost',
   USER: 'admin',
   PASSWORD: 'admin',
-  DB: 'nodejs',
+  DB: process.env.DB || 'nodejs',
   dialect: 'postgres',
   pool: {
     max: 5,

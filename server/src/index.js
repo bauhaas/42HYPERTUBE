@@ -6,6 +6,7 @@ import session from 'express-session';
 import passport from 'passport';
 import swaggerUi from 'swagger-ui-express';
 
+import dbConfig from '#config/db';
 import logger from '#config/logger';
 import authRoutes from '#routes/auth';
 import usersRoutes from '#routes/users';
@@ -93,5 +94,6 @@ app.use('/users', usersRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
+  logger.info(dbConfig.DB, port);
   logger.info(`Server running at http://localhost:${port}`);
 });

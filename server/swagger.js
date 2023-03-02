@@ -4,7 +4,7 @@ export default {
     title: 'Hypertube API',
     version: '1.0.0',
   },
-  host: 'localhost:3000',
+  host: `localhost:${process.env.PORT || 3000}`,
   basePath: '/',
   schemes: ['http'],
   paths: {
