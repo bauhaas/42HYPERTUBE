@@ -2,8 +2,8 @@ import express from 'express';
 import passport from 'passport';
 
 const router = express.Router();
-const CLIENT_HOME_PAGE_URL = 'http://localhost:5173';
-const CLIENT_SIGN_PAGE_URL = 'http://localhost:5173/signin';
+const CLIENT_HOME_PAGE_URL = 'http://localhost:5173/home';
+const CLIENT_SIGN_PAGE_URL = 'http://localhost:5173/';
 
 router.get('/', passport.authenticate('42'));
 

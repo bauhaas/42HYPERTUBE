@@ -16,23 +16,7 @@ export const Test = () => {
     password: '',
   });
   const [errors, setErrors] = useState(initialErrors);
-  const [users, setUsers] = useState([
-    // {
-    //   "id": 1,
-    //   "firstName": "John",
-    //   "lastName": "Doe"
-    // },
-    // {
-    //   "id": 2,
-    //   "firstName": "Jane",
-    //   "lastName": "Smith"
-    // },
-    // {
-    //   "id": 3,
-    //   "firstName": "Bob",
-    //   "lastName": "Johnson"
-    // }
-  ]);
+  const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
     try {
@@ -122,7 +106,7 @@ export const Test = () => {
               </button>
             </form>
             <Link
-              to="/signin"
+              to="/"
               data-cy="link"
               className="bg-blue-500 rounded-lg p-2 m-2 absolute bottom-0"
             >

@@ -12,7 +12,7 @@ function App() {
     <>
       <AlertContext.Provider value={{ alert, setAlert }}>
         <Routes>
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/" element={<Signin />} />
           <Route path="/test" element={<Test />} />
         </Routes>
       </AlertContext.Provider>
