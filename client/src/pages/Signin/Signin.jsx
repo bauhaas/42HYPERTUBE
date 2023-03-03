@@ -57,6 +57,8 @@ export const Signin = () => {
 
   const navigate = useNavigate();
   const localAuthentication = () => {
+    console.log('test');
+
     axios
       .post(`${API_BASE_URL}/auth/login`, {
         email: formData.email,
@@ -127,6 +129,7 @@ export const Signin = () => {
               type="submit"
               className="text-white p-1 rounded-md bg-blue-500 outline-blue-600"
               onClick={() => localAuthentication()}
+              data-cy="submit-form"
             >
               Sign in
             </button>
@@ -171,8 +174,9 @@ export const Signin = () => {
           <p className="self-end">
             Not registered ?{' '}
             <Link
-              to="/"
+              to="/signup"
               className=" text-blue-500 focus:outline-none focus:underline focus:decoration-blue-500 focus:decoration-2 focus:underline-offset-4 hover:underline-offset-4 hover:decoration-blue-500 hover:underline hover:decoration-2 cursor-pointer"
+              data-cy="signup"
             >
               Create an account
             </Link>

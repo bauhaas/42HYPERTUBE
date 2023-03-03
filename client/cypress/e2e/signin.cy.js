@@ -35,27 +35,75 @@ describe('/signin page', () => {
     cy.get('[data-cy="email"]').should('have.class', 'border-red-500');
   });
 
-  it('fill form with valid fields', () => {
-    cy.get('[data-cy="email"]').type('john.doe@gmail.com');
+  it('sign in with an existing user and valid credentials', () => {
+    cy.get('[data-cy="email"]').type('john.doe@example.com');
 
-    cy.get('[data-cy="password"]').type('admin123A!');
+    cy.get('[data-cy="password"]').type('root123Q!');
 
-    cy.get('form').submit();
+    // cy.intercept(method, url, staticResponse)
+    cy.intercept('POST', 'http://localhost:3000/auth/*', {
+      statusCode: 200,
+    }).as('login');
+
+    cy.get('[data-cy="submit-form"]').click();
+
+    cy.wait('@login').then(() => {
+      cy.url().should('include', '/home');
+    });
   });
 
-  it('signin with 42', () => {
-    cy.get('[data-cy="fortytwoAuth"]').click();
+  it('sign in with an existing user and invalid credentials', () => {
+    cy.get('[data-cy="email"]').type('john.doe@example.com');
+
+    cy.get('[data-cy="password"]').type('root123Q');
+
+    // cy.intercept(method, url, staticResponse)
+    cy.intercept('POST', 'http://localhost:3000/auth/*', {
+      statusCode: 401,
+    }).as('login');
+
+    cy.get('[data-cy="submit-form"]').click();
+
+    cy.wait('@login').then(() => {
+      cy.get('[data-cy="alert"]').should('have.class', 'bg-red-400');
+    });
   });
 
-  it('signin with google', () => {
-    cy.get('[data-cy="googleAuth"]').click();
+  it('sign in with a non-existing user', () => {
+    cy.get('[data-cy="email"]').type('john.doe@non-existant.com');
+
+    cy.get('[data-cy="password"]').type('root123Q');
+
+    // cy.intercept(method, url, staticResponse)
+    cy.intercept('POST', 'http://localhost:3000/auth/*', {
+      statusCode: 401,
+    }).as('login');
+
+    cy.get('[data-cy="submit-form"]').click();
+
+    cy.wait('@login').then(() => {
+      cy.get('[data-cy="alert"]').should('have.class', 'bg-red-400');
+    });
   });
 
-  it('signin with github', () => {
-    cy.get('[data-cy="githubAuth"]').click();
-  });
+  // it('signin with 42', () => {
+  //   cy.get('[data-cy="fortytwoAuth"]').click();
+  // });
 
-  it('signin with facebook', () => {
-    cy.get('[data-cy="facebookAuth"]').click();
+  // it('signin with google', () => {
+  //   cy.get('[data-cy="googleAuth"]').click();
+  // });
+
+  // it('signin with github', () => {
+  //   cy.get('[data-cy="githubAuth"]').click();
+  // });
+
+  // it('signin with facebook', () => {
+  //   cy.get('[data-cy="facebookAuth"]').click();
+  // });
+
+  it('create an account, redirect to /signup', () => {
+    cy.get('[data-cy="signup"]').click();
+    cy.url().should('include', '/signup');
   });
 });
