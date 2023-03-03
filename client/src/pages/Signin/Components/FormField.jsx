@@ -15,7 +15,7 @@ export const FormField = ({
           {label}
         </span>
         <span>&nbsp;</span>
-        <span className={`italic text-sm my-auto text-red-500`}>{error}</span>
+        <span className={`my-auto text-sm italic text-red-500`}>{error}</span>
       </div>
 
       <input
@@ -24,7 +24,7 @@ export const FormField = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
-        className={`p-1 rounded-md outline-blue-400 border border-slate-300 ${
+        className={`rounded-md border border-slate-300 p-1 outline-blue-400 ${
           error ? 'border-red-500' : ''
         }`}
         autoComplete="current-password"

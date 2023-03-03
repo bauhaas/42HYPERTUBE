@@ -12,7 +12,7 @@ export const RoundButtonWithIcon = ({
       onClick={onClick}
       aria-label={name}
       data-cy={datacy}
-      className="flex items-center border rounded-full border-slate p-2 hover:shadow-inner outline-slate-300 focus:shadow-inner"
+      className="border-slate flex items-center rounded-full border p-2 outline-slate-300 hover:shadow-inner focus:shadow-inner"
     >
       <Icon className={`h-6 w-6 ${textColor}`} />
     </button>

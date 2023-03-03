@@ -92,12 +92,12 @@ export const Signin = () => {
       <Alert type="error" />
       <div className="w-full">
         <div className="flex flex-col">
-          <img className="w-6 h-6" src="/src/assets/42logo.svg" alt="42 logo" />
+          <img className="h-6 w-6" src="/src/assets/42logo.svg" alt="42 logo" />
           <div>Hypertube</div>
           <div>Unlimited streaming, endless entertainment</div>
         </div>
-        <div className="bg-white rounded-lg h-fit w-fit shadow-2xl m-10 flex flex-col p-10">
-          <h1 className="font-bold text-2xl">Sign in</h1>
+        <div className="m-10 flex h-fit w-fit flex-col rounded-lg bg-white p-10 shadow-2xl">
+          <h1 className="text-2xl font-bold">Sign in</h1>
           <p>blablabla</p>
 
           <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
@@ -127,7 +127,7 @@ export const Signin = () => {
             />
             <button
               type="submit"
-              className="text-white p-1 rounded-md bg-blue-500 outline-blue-600"
+              className="rounded-md bg-blue-500 p-1 text-white outline-blue-600 "
               onClick={() => localAuthentication()}
               data-cy="submit-form"
             >
@@ -137,13 +137,15 @@ export const Signin = () => {
 
           <Link
             to="/"
-            className="self-end text-blue-500 focus:outline-none focus:underline focus:decoration-blue-500 focus:decoration-2 focus:underline-offset-4 hover:underline-offset-4 hover:decoration-blue-500 hover:underline hover:decoration-2 cursor-pointer"
+            className="cursor-pointer self-end text-blue-500
+            hover:underline hover:decoration-blue-500 hover:decoration-2 hover:underline-offset-4
+            focus:underline focus:decoration-blue-500 focus:decoration-2 focus:underline-offset-4 focus:outline-none"
           >
             Forgot your password?
           </Link>
 
           <div className="divider">OR</div>
-          <div className="flex justify-center gap-2 mb-10">
+          <div className="mb-10 flex justify-center gap-2">
             <RoundButtonWithIcon
               icon={GoogleIcon}
               datacy="googleAuth"
@@ -175,7 +177,7 @@ export const Signin = () => {
             Not registered ?{' '}
             <Link
               to="/signup"
-              className=" text-blue-500 focus:outline-none focus:underline focus:decoration-blue-500 focus:decoration-2 focus:underline-offset-4 hover:underline-offset-4 hover:decoration-blue-500 hover:underline hover:decoration-2 cursor-pointer"
+              className="cursor-pointer text-blue-500 hover:underline hover:decoration-blue-500 hover:decoration-2 hover:underline-offset-4 focus:underline focus:decoration-blue-500 focus:decoration-2 focus:underline-offset-4 focus:outline-none"
               data-cy="signup"
             >
               Create an account

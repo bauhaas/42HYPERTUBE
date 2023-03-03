@@ -70,10 +70,10 @@ export const Test = () => {
 
   return (
     <>
-      <div className="w-full min-h-screen">
+      <div className="min-h-screen w-full">
         <div className="flex min-h-[inherit]">
-          <div className=" w-1/2">
-            <form className="flex flex-col gap-2 m-2" onSubmit={handleSubmit}>
+          <div className="w-1/2 ">
+            <form className="m-2 flex flex-col gap-2" onSubmit={handleSubmit}>
               <FormField
                 label="Email address"
                 type="text"
@@ -100,7 +100,7 @@ export const Test = () => {
               />
               <button
                 type="submit"
-                className="text-white p-1 rounded-md bg-blue-500 outline-blue-600"
+                className="rounded-md bg-blue-500 p-1 text-white outline-blue-600"
               >
                 Sign in
               </button>
@@ -108,18 +108,18 @@ export const Test = () => {
             <Link
               to="/"
               data-cy="link"
-              className="bg-blue-500 rounded-lg p-2 m-2 absolute bottom-0"
+              className="absolute bottom-0 m-2 rounded-lg bg-blue-500 p-2"
             >
               go to signin
             </Link>
           </div>
-          <div className="bg-red-500 w-1/2">
+          <div className="w-1/2 bg-red-500">
             <div className="flex flex-col gap-4" data-cy="users-map">
               {users &&
                 users.map((user, index) => (
                   <div
                     key={index}
-                    className="bg-blue-500 mx-2 items-center rounded-lg p-1 w-1/2"
+                    className="mx-2 w-1/2 items-center rounded-lg bg-blue-500 p-1"
                   >
                     <p>{user.id}</p>
                     <p>{user.firstName}</p>

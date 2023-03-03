@@ -3,7 +3,7 @@ export const SignLayout = ({ children }) => {
     <>
       <div className="flex min-h-screen">
         <img
-          className="object-cover w-screen md:w-1/2 md:h-screen"
+          className="w-screen object-cover md:h-screen md:w-1/2"
           src="https://picsum.photos/200/200"
         ></img>
         {children}

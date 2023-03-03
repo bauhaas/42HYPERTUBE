@@ -23,7 +23,7 @@ export const Alert = ({ type }) => {
 
   return (
     <div
-      className={`absolute w-full p-4 gap-2 flex flex-row rounded-2xl items-center ${
+      className={`absolute flex w-full flex-row items-center gap-2 rounded-2xl p-4 ${
         alert !== '' ? color : 'hidden'
       }`}
       data-cy="alert"
