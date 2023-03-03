@@ -50,7 +50,7 @@ db.sequelize
 // });
 
 app.get('/login', function (req, res) {
-  res.send('login page');
+  res.send('login page lol');
 });
 
 // Passport session setup.

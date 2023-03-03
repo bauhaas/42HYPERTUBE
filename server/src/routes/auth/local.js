@@ -13,7 +13,8 @@ router.post(
   passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
     logger.debug('success local auth');
-    res.redirect('/');
+    // res.redirect(CLIENT_HOME_PAGE_URL);
+    res.status(200).send({ done: true });
   },
 );
 

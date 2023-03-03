@@ -3,7 +3,7 @@ import { useContext, useRef, useState } from 'react';
 import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 import { FaFacebook as FacebookIcon } from 'react-icons/fa';
 import { FcGoogle as GoogleIcon } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, redirect, useNavigate } from 'react-router-dom';
 import { isEmail, isStrongPassword } from 'validator';
 
 import { SignLayout } from '@internals/layouts';
@@ -45,9 +45,9 @@ export const Signin = () => {
     setErrors(newErrors);
 
     if (Object.values(newErrors).every((error) => error === '')) {
-      alert('should redirect');
+      console.log('no error, form is valid');
     } else {
-      alert('error');
+      console.log('error, form is invalid');
     }
   };
 
@@ -55,22 +55,21 @@ export const Signin = () => {
   const [password, setPassword] = useState('');
   const { setAlert } = useContext(AlertContext);
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   console.log(`Submitted login: ${login} and password: ${password}`);
-  // };
-
-  // const ThirdPartyAuthentication = (method) => {
-  //   console.log(method)
-
-  //   axios.get(`${API_BASE_URL}/auth/${method}`, {})
-  //     .then(response => {
-  //       console.log(response);
-  //     })
-  //     .catch(error => {
-  //       setAlert(error.message);
-  //     });
-  // };
+  const navigate = useNavigate();
+  const localAuthentication = () => {
+    axios
+      .post(`${API_BASE_URL}/auth/login`, {
+        email: formData.email,
+        password: formData.password,
+      })
+      .then((response) => {
+        console.log(response);
+        navigate('/home');
+      })
+      .catch((error) => {
+        setAlert(error.message);
+      });
+  };
 
   const handleBlur = (field) => {
     if (field === 'email' && isEmail(formData.email)) {
@@ -127,6 +126,7 @@ export const Signin = () => {
             <button
               type="submit"
               className="text-white p-1 rounded-md bg-blue-500 outline-blue-600"
+              onClick={() => localAuthentication()}
             >
               Sign in
             </button>
