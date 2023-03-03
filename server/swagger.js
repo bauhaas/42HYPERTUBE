@@ -56,7 +56,14 @@ export default {
             in: 'formData',
             required: true,
             type: 'string',
-            default: 'john.doe@gmail.com',
+            default: 'john.doe@example.com',
+          },
+          {
+            name: 'password',
+            in: 'formData',
+            required: true,
+            type: 'string',
+            default: 'root123Q!',
           },
         ],
         responses: {
@@ -110,7 +117,40 @@ export default {
         summary: 'Update details of a specific user [TO COMPLETE]',
       },
     },
-
+    '/auth/login': {
+      post: {
+        tags: ['auth'],
+        summary: 'Authenticate with email/pass',
+        description: 'Authenticate a user with his email and password',
+        parameters: [
+          {
+            name: 'email',
+            in: 'formData',
+            required: true,
+            type: 'string',
+            default: 'john.doe@example.com',
+          },
+          {
+            name: 'password',
+            in: 'formData',
+            required: true,
+            type: 'string',
+            default: 'root123Q!',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Successful operation',
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          404: {
+            description: 'Element not found',
+          },
+        },
+      },
+    },
     '/auth/facebook': {
       get: {
         tags: ['auth'],
@@ -295,7 +335,7 @@ export default {
         },
         email: {
           type: 'string',
-          example: 'john.doe@gmail.com',
+          example: 'john.doe@example.com',
         },
       },
     },

@@ -14,6 +14,7 @@ import facebookStrategy from '#strategies/facebook';
 import fortytwoStrategy from '#strategies/fortytwo';
 import githubStrategy from '#strategies/github';
 import googleStrategy from '#strategies/google';
+import local from '#strategies/local';
 
 import swaggerDocument from '../swagger.js';
 import db from './models/index.js';
@@ -44,12 +45,12 @@ db.sequelize
   });
 
 // drop the table if it already exists
-db.sequelize.sync({ force: true }).then(() => {
-  console.log('Drop and re-sync db.');
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   console.log('Drop and re-sync db.');
+// });
 
 app.get('/login', function (req, res) {
-  res.send('login');
+  res.send('login page');
 });
 
 // Passport session setup.
@@ -88,6 +89,7 @@ passport.use(googleStrategy);
 passport.use(githubStrategy);
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
+passport.use(local);
 
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
