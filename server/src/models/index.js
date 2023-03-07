@@ -30,4 +30,12 @@ db.users = userModel(sequelize, Sequelize);
 db.comments = commentModel(sequelize, Sequelize);
 db.movies = movieModel(sequelize, Sequelize);
 
+// Define association between movies and comments
+// db.movies.hasMany(db.comments, { as: 'comments' });
+// db.comments.belongsTo(db.movies, { foreignKey: 'MovieId' });
+
+// Define association between users and comments
+db.users.hasMany(db.comments, { as: 'comments' });
+db.comments.belongsTo(db.users, { foreignKey: 'UserId' });
+
 export default db;
