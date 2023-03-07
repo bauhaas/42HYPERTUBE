@@ -15,7 +15,9 @@ export const findAll = async () => {
 };
 
 export const findOne = async (id) => {
-  const user = await db.users.findByPk(id);
+  const user = await db.users.findByPk(id, {
+    include: [{ model: db.comments, as: 'comments' }],
+  });
   if (!user) {
     throw new NotFoundError('User not found');
   }
