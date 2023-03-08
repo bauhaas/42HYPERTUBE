@@ -105,6 +105,13 @@ export const Test = () => {
                 Sign in
               </button>
             </form>
+
+            <button
+              className="m-1 rounded-md bg-blue-500 p-1 text-white outline-blue-600"
+              onClick={getUsers}
+            >
+              GET USERS
+            </button>
             <Link
               to="/"
               data-cy="link"
