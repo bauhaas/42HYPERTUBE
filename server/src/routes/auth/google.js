@@ -2,6 +2,8 @@ import cors from 'cors';
 import express from 'express';
 import passport from 'passport';
 
+import logger from '#config/logger';
+
 const router = express.Router();
 
 router.get(
@@ -12,9 +14,10 @@ router.get(
 
 router.get(
   '/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: 'http://localhost:5173' }),
   function (req, res) {
-    res.redirect('/');
+    logger.debug('success github auth');
+    res.redirect('http://localhost:5173/home');
   },
 );
 

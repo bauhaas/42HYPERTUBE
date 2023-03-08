@@ -1,4 +1,5 @@
 import bcrypt from 'bcryptjs';
+import { Op } from 'sequelize';
 
 import logger from '#config/logger';
 import {
@@ -15,7 +16,9 @@ export const findAll = async () => {
 };
 
 export const findOne = async (id) => {
-  const user = await db.users.findByPk(id);
+  const user = await db.users.findByPk(id, {
+    include: [{ model: db.comments, as: 'comments' }],
+  });
   if (!user) {
     throw new NotFoundError('User not found');
   }
@@ -51,4 +54,39 @@ export const create = async (userData) => {
   logger.debug(userData, 'CREATE');
   const newUser = await db.users.create(userData);
   return newUser;
+};
+
+export const findOrCreate = async (
+  provider,
+  id,
+  email,
+  firstName,
+  lastName,
+) => {
+  const field = `${provider}Id`;
+
+  const user = await db.users.findOne({
+    where: {
+      [Op.or]: [
+        { githubId: id },
+        { facebookId: id },
+        { fortytwoId: id },
+        { googleId: id },
+      ],
+    },
+  });
+
+  if (!user) {
+    logger.debug(`must create via ${provider} user`);
+    const newUser = await db.users.create({
+      [field]: id,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      password: 'test',
+    });
+    return newUser;
+  }
+
+  return user;
 };

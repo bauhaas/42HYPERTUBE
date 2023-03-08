@@ -9,6 +9,7 @@ import swaggerUi from 'swagger-ui-express';
 import dbConfig from '#config/db';
 import logger from '#config/logger';
 import authRoutes from '#routes/auth';
+import commentsRoutes from '#routes/comments';
 import usersRoutes from '#routes/users';
 import facebookStrategy from '#strategies/facebook';
 import fortytwoStrategy from '#strategies/fortytwo';
@@ -93,6 +94,7 @@ passport.use(local);
 
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
+app.use('/comments', commentsRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

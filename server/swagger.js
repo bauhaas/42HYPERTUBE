@@ -268,6 +268,21 @@ export default {
             in: 'formData',
             required: true,
             type: 'string',
+            default: 'What a movie',
+          },
+          {
+            name: 'UserId',
+            in: 'formData',
+            required: true,
+            type: 'integer',
+            default: '1',
+          },
+          {
+            name: 'MovieId',
+            in: 'formData',
+            required: true,
+            type: 'integer',
+            default: '1',
           },
         ],
         responses: {
@@ -282,6 +297,26 @@ export default {
           },
           404: {
             description: 'Element not found',
+          },
+        },
+      },
+      get: {
+        tags: ['comments'],
+        summary: 'Returns all the comments',
+        description: '',
+        parameters: [],
+        responses: {
+          200: {
+            description: 'Successful operation',
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/definitions/Comments',
+              },
+            },
+          },
+          400: {
+            description: 'Invalid request',
           },
         },
       },

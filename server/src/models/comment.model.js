@@ -1,6 +1,6 @@
 const commentModel = (sequelize, Sequelize) => {
   const Comment = sequelize.define('Comment', {
-    title: {
+    content: {
       type: Sequelize.STRING,
       allowNull: false,
     },
