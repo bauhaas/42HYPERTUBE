@@ -16,6 +16,22 @@ const userModel = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    githubId: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    googleId: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    facebookId: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
+    fortytwoId: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
   });
 
   return User;

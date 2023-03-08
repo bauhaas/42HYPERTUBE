@@ -20,12 +20,16 @@ export default new LocalStrategy(
       return done(null, false);
     }
 
+    logger.debug(password, user.password);
     const hasValidPassword = await userService.verifypassword(
       password,
       user.password,
     );
 
+    logger.debug(hasValidPassword);
+
     if (!hasValidPassword) {
+      logger.debug('invalid pass');
       return done(null, false);
     }
 

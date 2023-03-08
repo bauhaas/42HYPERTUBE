@@ -1,6 +1,9 @@
 import dotenv from 'dotenv';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
+import logger from '#config/logger';
+import * as userService from '#services/user';
+
 dotenv.config();
 
 export default new GoogleStrategy(
@@ -9,8 +12,16 @@ export default new GoogleStrategy(
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: 'http://localhost:3000/auth/google/callback',
   },
-  function (accessToken, refreshToken, profile, cb) {
+  async function (accessToken, refreshToken, profile, cb) {
     console.log(profile);
-    return cb(null, profile);
+    const user = await userService.findOrCreate(
+      'google',
+      profile.id,
+      profile.emails[0].value,
+      profile.displayName.split(' ')[0],
+      profile.displayName.split(' ')[1],
+    );
+    logger.debug(user);
+    return cb(null, user);
   },
 );

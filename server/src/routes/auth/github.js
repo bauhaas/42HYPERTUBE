@@ -1,6 +1,8 @@
 import express from 'express';
 import passport from 'passport';
 
+import logger from '#config/logger';
+
 const router = express.Router();
 
 // GET /auth/github
@@ -24,9 +26,10 @@ router.get(
 //   which, in this example, will redirect the user to the home page.
 router.get(
   '/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  passport.authenticate('github', { failureRedirect: 'http://localhost:5173' }),
   function (req, res) {
-    res.redirect('/');
+    logger.debug('success github auth');
+    res.redirect('http://localhost:5173/home');
   },
 );
 
