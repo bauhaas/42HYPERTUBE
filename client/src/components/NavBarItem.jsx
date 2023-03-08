@@ -1,13 +1,10 @@
-export default function NavbarItem({ content, link }) {
+export default function NavBarItem({ content, link }) {
   return (
-    <li className="nav-item">
-      <a
-        href={link}
-        className=" flex justify-end text-xs font-bold uppercase text-white hover:opacity-75"
-      >
-        <i className=" text-lg text-white opacity-75"></i>
-        <span className="ml-2">{content}</span>
-      </a>
-    </li>
+    <a
+      href="#"
+      className="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+    >
+      {content}
+    </a>
   );
 }
