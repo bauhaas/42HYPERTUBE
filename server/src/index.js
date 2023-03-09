@@ -24,7 +24,12 @@ import db from './models/index.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }),
+);
 
 // Use the body-parser middleware to parse request bodies
 app.use(bodyParser.json());
