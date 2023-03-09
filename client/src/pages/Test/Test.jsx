@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isEmail, isStrongPassword } from 'validator';
 
+import { Toggle } from '../../components/Toggle';
 import { FormField } from '../Signin/Components/FormField';
 
 export const Test = () => {
@@ -114,6 +115,8 @@ export const Test = () => {
             >
               GET USERS
             </button>
+            {/* <input type="checkbox" className="toggle bg-red-500 text-green-400" /> */}
+            <Toggle />
             <Link
               to="/"
               data-cy="link"
