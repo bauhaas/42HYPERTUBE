@@ -35,10 +35,6 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -83,7 +79,6 @@ passport.use(local);
 //   have a database of user records, the complete GitHub profile is serialized
 //   and deserialized.
 passport.serializeUser((user, done) => {
-  console.log(user, 'SERIALIZE');
   done(null, user.id);
 });
 
@@ -91,7 +86,6 @@ passport.deserializeUser(async (id, done) => {
   console.log('deserializeUser called with id:', id);
   try {
     const user = await db.users.findByPk(id);
-    console.log('Deserialized user:', user); // add this line
     if (!user) {
       return done(null, false);
     }
@@ -99,11 +93,6 @@ passport.deserializeUser(async (id, done) => {
   } catch (err) {
     return done(err);
   }
-});
-
-app.use((req, res, next) => {
-  logger.debug('Session middleware called');
-  next();
 });
 
 // Set up the session middleware
@@ -127,17 +116,6 @@ app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);
 app.use('/comments', commentsRoutes);
-
-const requireAuth = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.status(401).send('Unauthorized');
-};
-
-app.get('/t', requireAuth, function (req, res) {
-  res.status(200).send('test');
-});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

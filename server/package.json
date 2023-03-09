@@ -61,7 +61,7 @@
   "imports": {
     "#config/*": "./src/config/*.config.js",
     "#controllers/*": "./src/controllers/*.controller.js",
-    "#middlewares/*": "./src/middlewares/*.js",
+    "#middlewares/*": "./src/middlewares/*.middleware.js",
     "#models/*": "./src/models/*.model.js",
     "#routes/auth": "./src/routes/auth/index.js",
     "#routes/*": "./src/routes/*/*.js",
