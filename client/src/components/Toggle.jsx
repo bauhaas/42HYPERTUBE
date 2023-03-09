@@ -13,7 +13,7 @@ export const Toggle = () => {
       />
       <div
         className={`flex h-6 w-12 items-center rounded-full ${
-          isChecked ? 'bg-green-400' : 'bg-gray-400'
+          isChecked ? 'bg-green-500' : 'bg-gray-400'
         } transition-transform duration-300 ease-in-out`}
       >
         <div

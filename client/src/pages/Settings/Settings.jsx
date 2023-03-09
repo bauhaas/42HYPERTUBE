@@ -1,5 +1,24 @@
 import { useState } from 'react';
 
+import { AccountTab } from './Account';
+import { ApparenceTab } from './Apparences';
+import { ConnectionTab } from './Connections';
+import { LanguageTab } from './Languages';
+
+const TabPanel = ({ id, selectedTab, tabToDisplay, children }) => {
+  return (
+    <div
+      role="tabpanel"
+      id={id}
+      className={`${
+        selectedTab === tabToDisplay ? '' : 'hidden'
+      } grow px-10 pt-16 pb-20`}
+    >
+      {children}
+    </div>
+  );
+};
+
 export const Settings = () => {
   const [selectedTab, setSelectedTab] = useState('account');
 
@@ -87,34 +106,34 @@ export const Settings = () => {
             </nav>
           </div>
           <div className="flex grow bg-gray-300" id="content">
-            <div
-              role="tabpanel"
+            <TabPanel
               id="my-account-tab"
-              className={`${selectedTab === 'account' ? '' : 'hidden'}`}
+              selectedTab={selectedTab}
+              tabToDisplay="account"
             >
-              my account pannel
-            </div>
-            <div
-              role="tabpanel"
+              <AccountTab />
+            </TabPanel>
+            <TabPanel
               id="connections-tab"
-              className={`${selectedTab === 'connection' ? '' : 'hidden'}`}
+              selectedTab={selectedTab}
+              tabToDisplay="connection"
             >
-              connections pannel
-            </div>
-            <div
-              role="tabpanel"
+              <ConnectionTab />
+            </TabPanel>
+            <TabPanel
               id="languages-tab"
-              className={`${selectedTab === 'language' ? '' : 'hidden'}`}
+              selectedTab={selectedTab}
+              tabToDisplay="language"
             >
-              languages pannel
-            </div>
-            <div
-              role="tabpanel"
+              <LanguageTab />
+            </TabPanel>
+            <TabPanel
               id="apparences-tab"
-              className={`${selectedTab === 'apparence' ? '' : 'hidden'}`}
+              selectedTab={selectedTab}
+              tabToDisplay="apparence"
             >
-              apparences pannel
-            </div>
+              <ApparenceTab />
+            </TabPanel>
           </div>
         </div>
       </div>
