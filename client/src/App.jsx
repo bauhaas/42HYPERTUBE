@@ -9,9 +9,10 @@ import {
   Signup,
   Test,
   Unknown,
-  User,
+  UserPage,
 } from '@internals/pages';
 
+import NavBar from './components/NavBar';
 import { AlertContext } from '/src/contexts/alert';
 
 function App() {
@@ -20,12 +21,13 @@ function App() {
   return (
     <>
       <AlertContext.Provider value={{ alert, setAlert }}>
+        <NavBar />
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/user/:id" element={<User />} />
+          <Route path="/user/:id" element={<UserPage />} />
           <Route path="/movie/:id" element={<Movie />} />
           <Route path="*" element={<Unknown />} />
 

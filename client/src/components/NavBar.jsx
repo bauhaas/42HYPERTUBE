@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import NavBarItem from './NavBarItem';
 import SvgNavBar from './SvgNavBar';
 
-function Nav() {
+function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <nav className="bg-gray-800">
+    <nav className="sticky bg-gray-800 ">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between ">
           <div className="flex-shrink-0">
@@ -74,4 +74,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default NavBar;

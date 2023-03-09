@@ -1,9 +1,5 @@
-import Navbar from '../../components/NavBar';
+import NavBar from '../../components/NavBar';
 
 export const Home = () => {
-  return (
-    <>
-      <Navbar />
-    </>
-  );
+  return <></>;
 };

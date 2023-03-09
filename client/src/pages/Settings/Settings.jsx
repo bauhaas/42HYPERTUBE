@@ -1,3 +1,5 @@
+import NavBar from '../../components/NavBar';
+
 export const Settings = () => {
   return (
     <>
