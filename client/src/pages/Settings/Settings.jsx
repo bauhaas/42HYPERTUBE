@@ -103,7 +103,10 @@ export const Settings = () => {
               </div>
             </nav>
           </div>
-          <div className="flex grow bg-gray-300" id="content">
+          <div
+            className="flex grow bg-slate-300 dark:bg-slate-800"
+            id="content"
+          >
             <TabPanel
               id="my-account-tab"
               selectedTab={selectedTab}

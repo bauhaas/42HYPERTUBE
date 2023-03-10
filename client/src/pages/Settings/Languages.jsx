@@ -45,7 +45,7 @@ export const LanguageTab = () => {
             <label key={language.id}>
               <div
                 id={language.id}
-                className="mb-2 flex cursor-pointer items-center gap-2 rounded-md bg-slate-500  p-2.5 hover:bg-slate-400"
+                className=" mb-2 flex cursor-pointer items-center gap-2 rounded-md bg-slate-500  p-2.5 hover:bg-slate-400"
               >
                 <input
                   type="radio"
