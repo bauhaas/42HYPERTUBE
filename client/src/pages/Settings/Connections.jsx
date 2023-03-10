@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { AiFillGithub as GithubIcon } from 'react-icons/ai';
 import { BsCheck as CheckIcon, BsX as CloseIcon } from 'react-icons/bs';
 import { FaFacebook as FacebookIcon } from 'react-icons/fa';
@@ -8,6 +9,8 @@ import { FortyTwoIcon } from '../../assets/FortyTwoIcon';
 import { Toggle } from '../../components/Toggle';
 
 export const ConnectionTab = () => {
+  const { t } = useTranslation();
+
   const [connections, setConnections] = useState([
     {
       provider: 'Github',
@@ -47,15 +50,16 @@ export const ConnectionTab = () => {
 
   return (
     <>
-      <h2 className="mb-5 text-2xl font-bold">Connections</h2>
+      <h2 className="mb-5 text-2xl font-bold">
+        <Trans i18nKey="settings.connectionsTab" />
+      </h2>
       <div className="flex flex-col">
         <div className="mb-4 rounded-lg bg-gray-600 p-4">
           <h3 className="mb-2 text-sm font-bold">
-            Add account to your profile
+            <Trans i18nKey="settings.connections.addAccountLabel" />
           </h3>
           <div className="text-xs">
-            This information will not be shared outside of Hypertube without
-            your permission.
+            <Trans i18nKey="settings.connections.addAccountDesc" />
           </div>
           <div className="mt-4 flex gap-2">
             {Object.entries(providerIconMap).map(
@@ -101,7 +105,7 @@ export const ConnectionTab = () => {
                   className="flex rounded-b-lg bg-gray-600 py-5 px-2.5"
                 >
                   <div className="grow text-sm font-bold">
-                    Afficher sur mon profil
+                    <Trans i18nKey="settings.connections.displayToProfileLabel" />
                   </div>
                   <Toggle />
                 </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { AccountTab } from './Account';
 import { ApparenceTab } from './Apparences';
@@ -21,26 +22,27 @@ const TabPanel = ({ id, selectedTab, tabToDisplay, children }) => {
 
 export const Settings = () => {
   const [selectedTab, setSelectedTab] = useState('account');
+  const { t } = useTranslation();
 
   const [tabs, setTabs] = useState({
     account: {
       'aria-controls': 'my-account-tab',
-      description: 'My account',
+      description: 'accountTab',
     },
     connection: {
       'aria-controls': 'connections-tab',
-      description: 'Connections',
+      description: 'connectionsTab',
     },
   });
 
   const [tabs2, setTabs2] = useState({
     language: {
       'aria-controls': 'languages-tab',
-      description: 'Languages',
+      description: 'languagesTab',
     },
     apparence: {
       'aria-controls': 'apparences-tab',
-      description: 'Apparences',
+      description: 'apparencesTab',
     },
   });
 
@@ -55,12 +57,8 @@ export const Settings = () => {
                 role="tablist"
                 aria-orientation="vertical"
               >
-                <div
-                  className="px-2.5 py-1.5 font-bold uppercase"
-                  role="button"
-                  tabIndex={-1}
-                >
-                  user settings
+                <div className="px-2.5 py-1.5 text-xs font-bold uppercase tracking-tight">
+                  <Trans i18nKey="settings.userSettingsLabel" />
                 </div>
                 {Object.entries(tabs).map(([tabName, tabData], index) => (
                   <div
@@ -74,11 +72,11 @@ export const Settings = () => {
                     }}
                     onClick={() => setSelectedTab(tabName)}
                   >
-                    {tabData.description}
+                    <Trans i18nKey={`settings.${tabData.description}`} />
                   </div>
                 ))}
-                <div className="px-2.5 py-1.5 font-bold uppercase">
-                  app settings
+                <div className="px-2.5 py-1.5 text-xs font-bold uppercase tracking-tight">
+                  <Trans i18nKey="settings.appSettingsLabel" />
                 </div>
                 {Object.entries(tabs2).map(([tabName, tabData], index) => (
                   <div
@@ -92,7 +90,7 @@ export const Settings = () => {
                     }}
                     onClick={() => setSelectedTab(tabName)}
                   >
-                    {tabData.description}
+                    <Trans i18nKey={`settings.${tabData.description}`} />
                   </div>
                 ))}
               </div>
@@ -101,7 +99,7 @@ export const Settings = () => {
                 role="tab"
                 tabIndex={0}
               >
-                Logout
+                <Trans i18nKey="settings.logout" />
               </div>
             </nav>
           </div>
