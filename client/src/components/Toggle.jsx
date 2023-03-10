@@ -1,7 +1,9 @@
+import { BsCheck as CheckIcon, BsX as CloseIcon } from 'react-icons/bs';
+
 import { useToggle } from '../hooks/useToggle';
 
-export const Toggle = () => {
-  const [isChecked, setIsChecked] = useToggle();
+export const Toggle = ({ checked }) => {
+  const [isChecked, setIsChecked] = useToggle(checked);
 
   return (
     <label className="relative inline-block h-6 w-12 cursor-pointer">
@@ -17,10 +19,16 @@ export const Toggle = () => {
         } transition-transform duration-300 ease-in-out`}
       >
         <div
-          className={` circle mx-1 h-5 w-5 transform rounded-full bg-white pl-1 transition-transform duration-300 ease-in-out ${
+          className={`flex h-6 w-6 transform place-items-center rounded-full bg-white  transition-transform duration-300 ease-in-out ${
             isChecked ? 'translate-x-full' : ''
           }`}
-        ></div>
+        >
+          {isChecked ? (
+            <CheckIcon className={`h-8 w-8 text-green-500`} />
+          ) : (
+            <CloseIcon className={`h-6 w-6 text-gray-400`} />
+          )}
+        </div>
       </div>
     </label>
   );

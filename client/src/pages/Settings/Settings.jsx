@@ -65,7 +65,7 @@ export const Settings = () => {
                 {Object.entries(tabs).map(([tabName, tabData], index) => (
                   <div
                     key={index + tabName}
-                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left  hover:bg-gray-500  focus:bg-gray-500 focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
+                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left  hover:bg-gray-500 focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
                     role="tab"
                     tabIndex={0}
                     aria-controls={tabData['aria-controls']}
@@ -83,7 +83,7 @@ export const Settings = () => {
                 {Object.entries(tabs2).map(([tabName, tabData], index) => (
                   <div
                     key={index + tabName}
-                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-gray-500  focus:bg-gray-500 focus:outline-none focus:outline-offset-0 focus:outline-blue-500"
+                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-gray-500 focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
                     role="tab"
                     tabIndex={0}
                     aria-controls={tabData['aria-controls']}
@@ -97,7 +97,7 @@ export const Settings = () => {
                 ))}
               </div>
               <div
-                className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-gray-500  focus:bg-gray-500 focus:outline-none focus:outline-offset-0 focus:outline-blue-500"
+                className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-gray-500  focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
                 role="tab"
                 tabIndex={0}
               >
