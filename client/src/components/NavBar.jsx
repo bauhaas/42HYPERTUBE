@@ -10,7 +10,7 @@ function Nav() {
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between ">
-          <div className="flex-shrink-0">
+          <div className="flex flex-shrink-0 items-center">
             <img
               className="h-8 w-8 invert"
               src="https://img.icons8.com/ios/50/null/h-key.png"
@@ -20,6 +20,19 @@ function Nav() {
           <div className="flex h-16 items-center justify-end">
             <div className=" hidden md:block">
               <div className="ml-10 flex items-baseline justify-end space-x-4">
+                <div className="ml-2 flex items-center  rounded-lg bg-gray-700 px-2 py-1">
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    className="border-none bg-gray-700 text-white focus:outline-none"
+                  />
+                  <button className="ml-2">
+                    <SvgNavBar
+                      link="http://www.w3.org/2000/svg"
+                      dimension="M4 4h16v16H4z"
+                    />
+                  </button>
+                </div>
                 <NavBarItem content="Movies" />
                 <NavBarItem content="Bisous" />
                 <NavBarItem content="User" />
