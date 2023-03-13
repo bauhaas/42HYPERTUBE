@@ -1,5 +1,30 @@
 version: "3"
 services:
+  server:
+    container_name: server
+    image: node:latest
+    working_dir: /code
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000" # Expose API port
+      - "9229:9229" # Expose Node debug port (disable in prod)
+    networks:
+      - postgres
+    command: bash -c "npm install && npm run start"
+    volumes:
+      - ./server:/code
+
+  client:
+    container_name: client
+    image: node:latest
+    working_dir: /code
+    ports:
+      - "5173:5173"
+    command: bash -c "npm install && npm run dev"
+    volumes:
+      - ./client:/code
+
   postgres:
     container_name: postgres
     image: postgres:latest
