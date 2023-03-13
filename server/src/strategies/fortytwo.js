@@ -13,7 +13,6 @@ export default new FortyTwoStrategy(
     callbackURL: 'http://localhost:3000/auth/42/callback',
   },
   async function (accessToken, refreshToken, profile, cb) {
-    console.log(profile);
     const user = await userService.findOrCreate(
       'fortytwo',
       profile.id,
@@ -21,7 +20,6 @@ export default new FortyTwoStrategy(
       profile.displayName.split(' ')[0],
       profile.displayName.split(' ')[1],
     );
-    logger.debug(user);
     return cb(null, user);
   },
 );

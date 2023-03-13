@@ -10,13 +10,9 @@ const CLIENT_SIGN_PAGE_URL = 'http://localhost:5173/';
 
 router.post(
   '/',
-  passport.authenticate('local', {
-    failureRedirect: '/login',
-    successRedirect: '/home',
-  }),
+  passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
     logger.debug('success local auth');
-    // res.redirect(CLIENT_HOME_PAGE_URL);
     res.status(200).send({ done: true });
   },
 );
