@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
@@ -23,16 +24,17 @@ import db from './models/index.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }),
+);
 
 // Use the body-parser middleware to parse request bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
+app.use(cookieParser());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -46,36 +48,13 @@ db.sequelize
   });
 
 // drop the table if it already exists
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log('Drop and re-sync db.');
-// });
+db.sequelize.sync({ force: true }).then(() => {
+  console.log('Drop and re-sync db.');
+});
 
 app.get('/login', function (req, res) {
   res.send('login page lol');
 });
-
-// Passport session setup.
-//   To support persistent login sessions, Passport needs to be able to
-//   serialize users into and deserialize users out of the session.  Typically,
-//   this will be as simple as storing the user ID when serializing, and finding
-//   the user by ID when deserializing.  However, since this example does not
-//   have a database of user records, the complete GitHub profile is serialized
-//   and deserialized.
-passport.serializeUser(function (user, done) {
-  done(null, user);
-});
-
-passport.deserializeUser(function (obj, done) {
-  done(null, obj);
-});
-
-app.use(
-  session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }),
-);
-// Initialize Passport!  Also use passport.session() middleware, to support
-// persistent login sessions (recommended).
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.get('/logout', function (req, res) {
   req.logout(function (err) {
@@ -91,6 +70,48 @@ passport.use(githubStrategy);
 passport.use(facebookStrategy);
 passport.use(fortytwoStrategy);
 passport.use(local);
+
+// Passport session setup.
+//   To support persistent login sessions, Passport needs to be able to
+//   serialize users into and deserialize users out of the session.  Typically,
+//   this will be as simple as storing the user ID when serializing, and finding
+//   the user by ID when deserializing.  However, since this example does not
+//   have a database of user records, the complete GitHub profile is serialized
+//   and deserialized.
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  console.log('deserializeUser called with id:', id);
+  try {
+    const user = await db.users.findByPk(id);
+    if (!user) {
+      return done(null, false);
+    }
+    return done(null, user);
+  } catch (err) {
+    return done(err);
+  }
+});
+
+// Set up the session middleware
+const sessionMiddleware = session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    domain: 'localhost',
+    httpOnly: true,
+    secure: false,
+  },
+});
+
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(sessionMiddleware);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use('/users', usersRoutes);

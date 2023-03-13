@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isEmail, isStrongPassword } from 'validator';
 
+import { Toggle } from '../../components/Toggle';
 import { FormField } from '../Signin/Components/FormField';
 
 export const Test = () => {
@@ -20,7 +21,9 @@ export const Test = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/users');
+      const response = await axios.get('http://localhost:3000/users', {
+        withCredentials: true,
+      });
       console.log(response);
       const users = response.data;
       return users;
@@ -105,6 +108,15 @@ export const Test = () => {
                 Sign in
               </button>
             </form>
+
+            <button
+              className="m-1 rounded-md bg-blue-500 p-1 text-white outline-blue-600"
+              onClick={getUsers}
+            >
+              GET USERS
+            </button>
+            {/* <input type="checkbox" className="toggle bg-red-500 text-green-400" /> */}
+            <Toggle />
             <Link
               to="/"
               data-cy="link"

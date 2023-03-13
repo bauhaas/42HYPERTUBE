@@ -14,7 +14,6 @@ export default new FacebookStrategy(
     profileFields: ['email', 'displayName'],
   },
   async function (accessToken, refreshToken, profile, cb) {
-    console.log(profile, accessToken);
     const user = await userService.findOrCreate(
       'facebook',
       profile.id,
@@ -22,7 +21,6 @@ export default new FacebookStrategy(
       profile.displayName.split(' ')[0],
       profile.displayName.split(' ')[1],
     );
-    logger.debug(user);
-    return cb(null, profile);
+    return cb(null, user);
   },
 );
