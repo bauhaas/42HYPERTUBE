@@ -1,5 +1,5 @@
 const dbConfig = {
-  HOST: 'localhost',
+  HOST: 'postgres',
   USER: 'admin',
   PASSWORD: 'admin',
   DB: process.env.DB || 'nodejs',
