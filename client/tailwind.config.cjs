@@ -7,6 +7,10 @@ module.exports = {
         whitney: ['whitneymedium', 'cursive'],
         bebas: ['Bebas', 'sans-serif'],
       },
+      // accentColor: {
+      //   cblue:'#3b82f6',
+      //   cred:'#ef4444',
+      // }
     },
   },
   darkMode: 'class',

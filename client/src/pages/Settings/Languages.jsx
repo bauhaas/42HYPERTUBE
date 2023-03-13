@@ -54,7 +54,7 @@ export const LanguageTab = () => {
                   value={language.i18n}
                   checked={selectedLanguage === language.i18n}
                   onChange={handleLanguageChange}
-                  className="cursor-pointer checked:bg-red-500"
+                  className="cursor-pointer accent-black"
                 />
                 <div className="font-bold">{language.name}</div>
                 <div className="ml-auto flex items-center gap-2">
