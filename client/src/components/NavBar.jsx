@@ -1,49 +1,36 @@
 import { Transition } from '@headlessui/react';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import NavBarItem from './NavBarItem';
 import SvgNavBar from './SvgNavBar';
 
-function Nav() {
+function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const mobileMenuRef = useRef(null); // Create a ref object using useRef
+
   return (
-    <nav className="bg-gray-800">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between ">
-          <div className="flex flex-shrink-0 items-center">
+    <nav className="fixed top-0 z-50 w-screen bg-gray-800">
+      <div className="mx-auto sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          <div className="m-2 flex-shrink-0">
             <img
               className="h-8 w-8 invert"
               src="https://img.icons8.com/ios/50/null/h-key.png"
               alt="Workflow"
             />
           </div>
-          <div className="flex h-16 items-center justify-end">
-            <div className=" hidden md:block">
-              <div className="ml-10 flex items-baseline justify-end space-x-4">
-                <div className="ml-2 flex items-center  rounded-lg bg-gray-700 px-2 py-1">
-                  <input
-                    type="text"
-                    placeholder="Search"
-                    className="border-none bg-gray-700 text-white focus:outline-none"
-                  />
-                  <button className="ml-2">
-                    <SvgNavBar
-                      link="http://www.w3.org/2000/svg"
-                      dimension="M4 4h16v16H4z"
-                    />
-                  </button>
-                </div>
-                <NavBarItem content="Movies" />
-                <NavBarItem content="Bisous" />
-                <NavBarItem content="User" />
-              </div>
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline justify-end space-x-4">
+              <NavBarItem content="Movies" />
+              <NavBarItem content="Bisous" />
+              <NavBarItem content="User" />
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden">
+          <div className="m-2 mt-2 flex  justify-end md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="burger-menu inline-flex items-center rounded-md bg-gray-900 p-2 text-gray-400 hover:bg-gray-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -75,7 +62,10 @@ function Nav() {
       >
         {(ref) => (
           <div className="md:hidden" id="mobile-menu">
-            <div ref={ref} className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+            <div
+              ref={(node) => (mobileMenuRef.current = node)}
+              className="space-y-1 px-2 pt-2 pb-3 sm:px-3"
+            >
               <NavBarItem content="Movies" />
               <NavBarItem content="Bisous" />
               <NavBarItem content="User" />
@@ -87,4 +77,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default NavBar;
