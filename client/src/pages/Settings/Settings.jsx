@@ -137,13 +137,14 @@ export const Settings = () => {
               <ApparenceTab />
             </TabPanel>
           </div>
-          <div className="bg-light p-2 dark:bg-dark-focus">
+          <div className="flex flex-col items-center bg-light p-2 dark:bg-dark-focus">
             <CloseIcon
               role="button"
               tabIndex="0"
               className="ml-auto h-8 w-8 cursor-pointer rounded-full border-2 border-dark focus:outline-none focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:border-light dark:text-light"
               onClick={() => test()}
             />
+            <div className="text-sm dark:text-light">ESC</div>
           </div>
         </div>
       </div>
