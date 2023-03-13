@@ -31,13 +31,12 @@ export const ApparenceTab = () => {
     setSelectedColor(color);
   }
 
-  console.log(theme);
   return (
     <>
-      <h2 className="mb-5 text-2xl font-bold dark:text-white">
+      <h2 className="mb-5 text-2xl font-bold dark:text-light">
         <Trans i18nKey="settings.apparencesTab" />
       </h2>
-      <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-white">
+      <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-light">
         Choose your accent color
       </h3>
       <div className="flex gap-2">
@@ -51,30 +50,32 @@ export const ApparenceTab = () => {
           </div>
         ))}
       </div>
-      <div className="my-4 flex gap-10 rounded-lg bg-gray-600 p-4">
-        <div className="flex flex-col gap-2">
-          <div>Avatar</div>
+      <div className="my-4 flex gap-10 rounded-lg bg-mid  p-4 dark:bg-dark">
+        <div className="flex flex-col gap-2 ">
+          <div className="dark:text-light">Avatar</div>
           <Avatar
             imageAttribute={'h-10 w-10 rounded-full ring-2 ring-blue-500'}
             imagePath="https://randomuser.me/api/portraits/men/75.jpg"
           />
         </div>
         <div className="flex flex-col">
-          <div>Menu</div>
-          <label className="accent-blue-500">
+          <div className="dark:text-light">Menu</div>
+          <label className="accent-blue-500 dark:text-light">
             <input type="radio" />
             {'  '}radio
           </label>
         </div>
         <div className="flex flex-col">
-          <div>Text highlight</div>
-          <div>
-            <span className="bg-blue-500 text-white">Ship stuff</span> people
-            need.
+          <div className="dark:text-light">Text highlight</div>
+          <div className="dark:text-light">
+            <span className="bg-blue-500 text-light dark:text-black">
+              Ship stuff
+            </span>{' '}
+            people need.
           </div>
         </div>
       </div>
-      <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-white">
+      <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-light">
         Choose your theme
       </h3>
       <div className="flex gap-2 ">
@@ -87,7 +88,7 @@ export const ApparenceTab = () => {
             checked={theme === 'light'}
             onChange={handleThemeChange}
           />
-          <div className="relative flex flex-col items-center justify-center rounded-lg bg-gray-500 text-black peer-checked:bg-black peer-checked:text-white">
+          <div className="relative flex flex-col items-center justify-center rounded-lg bg-mid dark:bg-dark dark:text-light dark:hover:bg-dark-hover">
             <div
               className={`flex h-24 w-32 rounded-lg ${
                 theme === 'light' ? 'border-2 border-blue-500' : ''
@@ -97,7 +98,7 @@ export const ApparenceTab = () => {
                 <div
                   className={`m-1 ml-auto flex h-6 w-6 place-items-center self-end rounded-full bg-blue-500`}
                 >
-                  <CheckIcon className={`h-8 w-8`} />
+                  <CheckIcon className={`h-8 w-8 text-light`} />
                 </div>
               ) : null}
             </div>
@@ -113,7 +114,7 @@ export const ApparenceTab = () => {
             checked={theme === 'dark'}
             onChange={handleThemeChange}
           />
-          <div className="relative flex flex-col items-center justify-center rounded-lg bg-gray-500 text-black peer-checked:bg-black peer-checked:text-white ">
+          <div className="relative flex flex-col items-center justify-center rounded-lg bg-mid dark:bg-dark dark:text-light dark:hover:bg-dark-hover ">
             <div
               className={`flex h-24 w-32 rounded-lg ${
                 theme === 'dark' ? 'border-2 border-blue-500' : ''

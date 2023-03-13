@@ -32,11 +32,11 @@ export const LanguageTab = () => {
   console.log(selectedLanguage);
   return (
     <>
-      <h2 className="mb-5 text-2xl font-bold">
+      <h2 className="mb-5 text-2xl font-bold dark:text-light">
         <Trans i18nKey="settings.languagesTab" />
       </h2>
       <div className="">
-        <h3 className="mb-2 text-xs font-bold uppercase tracking-tight">
+        <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-light">
           <Trans i18nKey="settings.languages.selectLabel" />
         </h3>
 
@@ -45,7 +45,7 @@ export const LanguageTab = () => {
             <label key={language.id}>
               <div
                 id={language.id}
-                className=" mb-2 flex cursor-pointer items-center gap-2 rounded-md bg-slate-500  p-2.5 hover:bg-slate-400"
+                className=" mb-2 flex cursor-pointer items-center gap-2 rounded-md bg-mid p-2.5 hover:bg-mid-hover dark:bg-dark dark:hover:bg-dark-hover"
               >
                 <input
                   type="radio"
@@ -56,9 +56,9 @@ export const LanguageTab = () => {
                   onChange={handleLanguageChange}
                   className="cursor-pointer accent-black"
                 />
-                <div className="font-bold">{language.name}</div>
+                <div className="font-bold dark:text-light">{language.name}</div>
                 <div className="ml-auto flex items-center gap-2">
-                  <div className="text-xs">
+                  <div className="text-xs dark:text-light">
                     <Trans i18nKey={`settings.languages.${language.value}`} />
                   </div>
                   <img src={language.flagUrl} alt={language.name} />
