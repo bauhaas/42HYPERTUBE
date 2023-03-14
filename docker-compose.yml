@@ -12,6 +12,7 @@ services:
     networks:
       - postgres
       - api
+      - test_postgres
     command: sh -c "npm install && npm run start"
     volumes:
       - ./server:/code
@@ -57,14 +58,12 @@ services:
   test_postgres:
     container_name: test_postgres
     image: postgres:latest
-    ports:
-      - "5433:5432"
     volumes:
       - $HOME/data/test_postgres:/data/postgres
     # env_file:
     #   - test.env # <-- separate environment file for test DB
     environment:
-      - POSTGRES_USER=ad@min
+      - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=test
     networks:
