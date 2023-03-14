@@ -40,4 +40,18 @@ export default {
       sendErrorResponse(res, err);
     }
   },
+
+  patch: async (req, res) => {
+    try {
+      // verify that jwt/auth's id corresponds to id
+      logger.debug(req.params);
+      logger.debug(req.body);
+      const id = req.params.id;
+      const patchInfo = req.body;
+      const data = await userService.patch(id, patchInfo);
+      res.status(200).send(data);
+    } catch (err) {
+      sendErrorResponse(res, err);
+    }
+  },
 };
