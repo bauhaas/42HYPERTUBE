@@ -9,10 +9,9 @@ import userModel from '#models/user';
 logger.debug(dbConfig.DB);
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-  host: dbConfig.HOST,
+  host: process.env.NODE_ENV === 'test' ? dbConfig.HOST_TEST : dbConfig.HOST,
+  port: dbConfig.PORT,
   dialect: dbConfig.dialect,
-  port: process.env.NODE_ENV === 'test' ? 5433 : 5432,
-  // logging: process.env.NODE_ENV === 'test' ? false : true,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
