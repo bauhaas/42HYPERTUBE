@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { BsCheck as CheckIcon, BsX as CloseIcon } from 'react-icons/bs';
+import { FiLogOut } from 'react-icons/fi';
+import { HiLogout } from 'react-icons/hi';
 
 import { AccountTab } from './Account';
 import { ApparenceTab } from './Apparences';
@@ -46,24 +49,34 @@ export const Settings = () => {
     },
   });
 
+  const leaveSettings = () => {
+    alert('should close settings and redirect to previous page');
+  };
+
+  const logout = () => {
+    alert('should clear session and go to /');
+  };
   return (
     <>
       <div className="min-h-screen">
         <div className="flex" id="sidebarview">
-          <div className="flex min-h-screen bg-gray-600" id="sidebar">
-            <nav className="w-52 pt-14 pr-1.5 pb-14 pl-5" id="navside">
+          <div className="flex min-h-screen bg-brand dark:bg-dark" id="sidebar">
+            <nav
+              className="flex w-52 flex-col pt-14 pr-1.5 pb-14 pl-5"
+              id="navside"
+            >
               <div
                 className="flex flex-col"
                 role="tablist"
                 aria-orientation="vertical"
               >
-                <div className="px-2.5 py-1.5 text-xs font-bold uppercase tracking-tight">
+                <div className="px-2.5 py-1.5 text-xs font-bold uppercase tracking-tight dark:text-light">
                   <Trans i18nKey="settings.userSettingsLabel" />
                 </div>
                 {Object.entries(tabs).map(([tabName, tabData], index) => (
                   <div
                     key={index + tabName}
-                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left  hover:bg-gray-500 focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
+                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-brand-hover focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:text-light dark:hover:bg-dark-hover"
                     role="tab"
                     tabIndex={0}
                     aria-controls={tabData['aria-controls']}
@@ -75,13 +88,14 @@ export const Settings = () => {
                     <Trans i18nKey={`settings.${tabData.description}`} />
                   </div>
                 ))}
-                <div className="px-2.5 py-1.5 text-xs font-bold uppercase tracking-tight">
+                <div className="px-2.5 py-1.5 text-xs font-bold uppercase tracking-tight dark:text-light">
                   <Trans i18nKey="settings.appSettingsLabel" />
                 </div>
+
                 {Object.entries(tabs2).map(([tabName, tabData], index) => (
                   <div
                     key={index + tabName}
-                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-gray-500 focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
+                    className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-brand-hover focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:text-light dark:hover:bg-dark-hover"
                     role="tab"
                     tabIndex={0}
                     aria-controls={tabData['aria-controls']}
@@ -95,18 +109,19 @@ export const Settings = () => {
                 ))}
               </div>
               <div
-                className="mb-0.5 rounded-lg py-1.5 px-2.5 text-left hover:bg-gray-500  focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
+                className="mt-auto mb-0.5 flex items-center rounded-lg py-1.5 px-2.5 text-left hover:bg-brand-hover focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:text-light dark:hover:bg-dark-hover"
                 role="tab"
                 tabIndex={0}
               >
                 <Trans i18nKey="settings.logout" />
+                <FiLogOut
+                  className="ml-auto cursor-pointer"
+                  onClick={() => logout()}
+                />
               </div>
             </nav>
           </div>
-          <div
-            className="flex grow bg-slate-300 dark:bg-slate-800"
-            id="content"
-          >
+          <div className="flex grow bg-light dark:bg-dark-focus" id="content">
             <TabPanel
               id="my-account-tab"
               selectedTab={selectedTab}
@@ -135,6 +150,15 @@ export const Settings = () => {
             >
               <ApparenceTab />
             </TabPanel>
+          </div>
+          <div className="flex flex-col items-center bg-light p-2 dark:bg-dark-focus">
+            <CloseIcon
+              role="button"
+              tabIndex="0"
+              className="ml-auto h-8 w-8 cursor-pointer rounded-full border-2 border-dark focus:outline-none focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:border-light dark:text-light"
+              onClick={() => leaveSettings()}
+            />
+            <div className="text-sm dark:text-light">ESC</div>
           </div>
         </div>
       </div>

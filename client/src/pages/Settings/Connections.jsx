@@ -7,6 +7,9 @@ import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
 import { FortyTwoIcon } from '../../assets/FortyTwoIcon';
 import { Toggle } from '../../components/Toggle';
+import { ActionHeader } from './Components/ActionHeader';
+import { TabHeader } from './Components/TabHeader';
+import { ThirdPartyButton } from './Components/ThirdPartyButton';
 
 export const ConnectionTab = () => {
   const { t } = useTranslation();
@@ -50,27 +53,23 @@ export const ConnectionTab = () => {
 
   return (
     <>
-      <h2 className="mb-5 text-2xl font-bold">
-        <Trans i18nKey="settings.connectionsTab" />
-      </h2>
+      <TabHeader i18nKey="settings.connectionsTab" />
       <div className="flex flex-col">
-        <div className="mb-4 rounded-lg bg-gray-600 p-4">
-          <h3 className="mb-2 text-sm font-bold">
+        <div className="mb-4 rounded-lg bg-mid p-4 dark:bg-dark">
+          <h3 className="mb-2 text-sm font-bold dark:text-light">
             <Trans i18nKey="settings.connections.addAccountLabel" />
           </h3>
-          <div className="text-xs">
+          <div className="text-xs dark:text-light">
             <Trans i18nKey="settings.connections.addAccountDesc" />
           </div>
           <div className="mt-4 flex gap-2">
             {Object.entries(providerIconMap).map(
               ([provider, IconComponent]) => (
-                <button
-                  key={provider}
-                  className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-500 hover:bg-gray-400 focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
-                  onClick={() => syncWith3rdParty(provider)}
-                >
-                  <IconComponent className={`h-8 w-8`} />
-                </button>
+                <ThirdPartyButton
+                  provider={provider}
+                  syncWith3rdParty={syncWith3rdParty}
+                  IconComponent={IconComponent}
+                />
               ),
             )}
           </div>
@@ -82,29 +81,33 @@ export const ConnectionTab = () => {
               <div
                 key={index}
                 id="connection"
-                className="mb-2 rounded-lg bg-gray-400"
+                className="mb-2 rounded-lg bg-mid dark:bg-dark"
               >
                 <div
                   id="connectionHeader"
                   className="flex items-center gap-3 p-4"
                 >
-                  <ProviderIcon className={`h-8 w-8`} />
+                  <ProviderIcon className={`h-8 w-8 dark:text-light`} />
                   <div>
-                    <div className="font-bold">{connection.displayName}</div>
-                    <div className="text-xs">{connection.provider}</div>
+                    <div className="font-bold dark:text-light">
+                      {connection.displayName}
+                    </div>
+                    <div className="text-xs dark:text-light">
+                      {connection.provider}
+                    </div>
                   </div>
                   <CloseIcon
                     role="button"
                     tabIndex="0"
-                    className="ml-auto h-8 w-8 cursor-pointer rounded-lg focus:outline-none focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500"
+                    className="ml-auto h-8 w-8 cursor-pointer rounded-lg focus:outline-none focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:text-light"
                     onClick={() => delete3rdParty(connection.provider)}
                   />
                 </div>
                 <div
                   id="connectionOption"
-                  className="flex rounded-b-lg bg-gray-600 py-5 px-2.5"
+                  className="flex rounded-b-lg bg-light-hover py-5 px-2.5 dark:bg-mid-hover"
                 >
-                  <div className="grow text-sm font-bold">
+                  <div className="grow text-sm font-bold dark:text-light">
                     <Trans i18nKey="settings.connections.displayToProfileLabel" />
                   </div>
                   <Toggle />

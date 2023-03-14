@@ -56,6 +56,25 @@ export const create = async (userData) => {
   return newUser;
 };
 
+export const patch = async (id, patchData) => {
+  const user = await db.users.findByPk(id);
+  if (!user) {
+    throw new NotFoundError('User not found');
+  }
+
+  if (patchData.password !== undefined) {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(patchData.password, salt);
+    patchData.password = hash;
+  }
+  logger.debug(patchData, 'PATCH');
+  const newUser = await db.users.update(patchData, {
+    where: { id: id },
+  });
+  logger.debug(newUser, 'PATCH');
+  return newUser;
+};
+
 export const findOrCreate = async (
   provider,
   id,
