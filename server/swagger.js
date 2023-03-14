@@ -169,6 +169,42 @@ export default {
           },
         },
       },
+      put: {
+        tags: ['users'],
+        summary: 'upload new profile picture of a specific user',
+        description:
+          'Returns username, email address, profile picture URL of a specific user',
+        consumes: ['multipart/form-data'],
+        produces: ['application/json'],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+          {
+            name: 'file',
+            in: 'formData',
+            required: true,
+            type: 'file',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Successful operation',
+            schema: {
+              $ref: '#/definitions/User',
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          404: {
+            description: 'Element not found',
+          },
+        },
+      },
     },
     '/movies': {
       get: {
