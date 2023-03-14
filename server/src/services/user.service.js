@@ -125,8 +125,6 @@ export const upload = multer({
   },
 });
 
-// export const uploadFileMiddleware = util.promisify(upload);
-
 export const errorHandler = (error, req, res, next) => {
   if (error) {
     return res.status(error.status || 500).send({ message: error.message });

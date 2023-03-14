@@ -169,6 +169,8 @@ export default {
           },
         },
       },
+    },
+    '/users/{id}/picture': {
       put: {
         tags: ['users'],
         summary: 'upload new profile picture of a specific user',

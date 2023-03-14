@@ -11,6 +11,6 @@ router.get('/', users.findAll);
 router.post('/', users.create);
 router.get('/:id', users.findOne);
 router.patch('/:id', users.patch);
-router.put('/:id', upload.single('file'), errorHandler, users.picture);
+router.put('/:id/picture', upload.single('file'), errorHandler, users.picture);
 
 export default router;
