@@ -17,3 +17,13 @@ export const create = async (commentData) => {
   const newComment = await db.comments.create(commentData);
   return newComment;
 };
+
+export const deleteById = async (id) => {
+  logger.debug(id, 'DELETE');
+  const deletedRtn = await db.comments.destroy({
+    where: {
+      id: id,
+    },
+  });
+  return deletedRtn;
+};

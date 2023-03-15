@@ -326,6 +326,42 @@ export default {
         },
       },
     },
+    '/comments/{id}': {
+      delete: {
+        tags: ['comments'],
+        summary: 'Deletes the comment {id}',
+        description:
+          'Returns a 204 No Content if the comment was succesfully deleted',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+        ],
+        responses: {
+          204: {
+            description: 'Successful operation No Content',
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/definitions/Comments',
+              },
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          403: {
+            description: "Forbidden, can't delete",
+          },
+          404: {
+            description: 'Element not found',
+          },
+        },
+      },
+    },
     '/comments/movies/{id}': {
       get: {
         tags: ['comments'],
