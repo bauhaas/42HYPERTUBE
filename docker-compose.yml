@@ -60,12 +60,12 @@ services:
     image: postgres:latest
     volumes:
       - $HOME/data/test_postgres:/data/postgres
-    # env_file:
-    #   - test.env # <-- separate environment file for test DB
+    env_file:
+      - docker.env
     environment:
-      - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=test
+      # This way we keep all the same env vars from docker.env
+      # But we override the POSTGRES_DB value
     networks:
       - test_postgres
 
