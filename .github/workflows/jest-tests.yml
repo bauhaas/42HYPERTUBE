@@ -31,4 +31,4 @@ jobs:
       - name: Install Dependencies
         run: docker-compose up --detach
       - name: Npm run jest tests
-        run: docker-compose exec server npm test
+        run: docker-compose exec --no-tty server npm test
