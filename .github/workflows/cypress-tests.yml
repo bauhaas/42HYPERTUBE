@@ -25,10 +25,13 @@ jobs:
           echo POSTGRES_DB="$POSTGRES_DB" >> docker.env
           echo PGADMIN_DEFAULT_EMAIL="$PGADMIN_DEFAULT_EMAIL" >> docker.env
           echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
-      - name: Install Dependencies
-        run: docker-compose up --detach
+      # - name: Install Dependencies
+      #   run: docker-compose up --detach
       - name: Cypress run
         uses: cypress-io/github-action@v5.1.0
         with:
-          # working-directory: client
-          start: docker-compose exec client npm run dev
+          working-directory: client
+          # install: true
+          start: npm install && npm start
+          wait-on: "http://localhost:5173"
+          # start: docker-compose exec client npm run dev
