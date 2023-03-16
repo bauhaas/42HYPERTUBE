@@ -170,6 +170,44 @@ export default {
         },
       },
     },
+    '/users/{id}/picture': {
+      put: {
+        tags: ['users'],
+        summary: 'upload new profile picture of a specific user',
+        description:
+          'Returns username, email address, profile picture URL of a specific user',
+        consumes: ['multipart/form-data'],
+        produces: ['application/json'],
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+          {
+            name: 'file',
+            in: 'formData',
+            required: true,
+            type: 'file',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Successful operation',
+            schema: {
+              $ref: '#/definitions/User',
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          404: {
+            description: 'Element not found',
+          },
+        },
+      },
+    },
     '/movies': {
       get: {
         tags: ['movies'],
@@ -284,6 +322,42 @@ export default {
           },
           400: {
             description: 'Invalid request',
+          },
+        },
+      },
+    },
+    '/comments/{id}': {
+      delete: {
+        tags: ['comments'],
+        summary: 'Deletes the comment {id}',
+        description:
+          'Returns a 204 No Content if the comment was succesfully deleted',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+        ],
+        responses: {
+          204: {
+            description: 'Successful operation No Content',
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/definitions/Comments',
+              },
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          403: {
+            description: "Forbidden, can't delete",
+          },
+          404: {
+            description: 'Element not found',
           },
         },
       },
