@@ -25,9 +25,6 @@ jobs:
           echo POSTGRES_DB="$POSTGRES_DB" >> docker.env
           echo PGADMIN_DEFAULT_EMAIL="$PGADMIN_DEFAULT_EMAIL" >> docker.env
           echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
-
-          echo "cat docker.env (with some trickery that should be immediately removed):"
-          cat docker.env | sed 's/./& /g'
       - name: Install Dependencies
         run: docker-compose up --detach
       - name: Cypress run

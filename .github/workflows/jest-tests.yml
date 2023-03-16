@@ -25,13 +25,11 @@ jobs:
           echo POSTGRES_DB="$POSTGRES_DB" >> docker.env
           echo PGADMIN_DEFAULT_EMAIL="$PGADMIN_DEFAULT_EMAIL" >> docker.env
           echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
-
-          echo "cat docker.env :"
-          cat docker.env
       - name: Install Dependencies
         run: docker-compose up --detach
       - name: Npm run jest tests
         shell: 'script --quiet --return --command "bash {0}"'
         run: |
           perl -E 'say "Is STDOUT a TTY?: ", -t STDOUT ? "yes" : "no"'
+          docker-compose --version
           docker-compose exec server npm run test
