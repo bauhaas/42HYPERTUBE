@@ -32,6 +32,11 @@ export const ConnectionTab = () => {
     42: FortyTwoIcon,
   };
 
+  const isAlreadySync = (provider) => {
+    if (connections.find((x) => x.provider === provider)) return true;
+    return false;
+  };
+
   const syncWith3rdParty = (provider) => {
     // later on, it will redirect to 3rd party authentication
 
@@ -63,14 +68,21 @@ export const ConnectionTab = () => {
             <Trans i18nKey="settings.connections.addAccountDesc" />
           </div>
           <div className="mt-4 flex gap-2">
-            {Object.entries(providerIconMap).map(
-              ([provider, IconComponent]) => (
-                <ThirdPartyButton
-                  provider={provider}
-                  syncWith3rdParty={syncWith3rdParty}
-                  IconComponent={IconComponent}
-                />
-              ),
+            {connections.length === 4 ? (
+              <div className="text-sm font-bold">
+                You are connected with all 3rd parties available
+              </div>
+            ) : (
+              Object.entries(providerIconMap).map(
+                ([provider, IconComponent]) => (
+                  <ThirdPartyButton
+                    provider={provider}
+                    disabled={isAlreadySync(provider)}
+                    syncWith3rdParty={syncWith3rdParty}
+                    IconComponent={IconComponent}
+                  />
+                ),
+              )
             )}
           </div>
         </div>
