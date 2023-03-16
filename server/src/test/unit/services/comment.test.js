@@ -32,6 +32,9 @@ describe('findAll', () => {
 
     // Call the findAll function
     const comments = await findAll();
+    console.log('AAAA', comments);
+    console.log(comments.length);
+    console.log(comments[0].id);
     // Expect to have one comments and that its id is 1
     expect(comments.length).toEqual(1);
     expect(comments[0].id).toEqual(1);
