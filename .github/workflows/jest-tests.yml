@@ -34,4 +34,4 @@ jobs:
         shell: 'script --quiet --return --command "bash {0}"'
         run: |
           perl -E 'say "Is STDOUT a TTY?: ", -t STDOUT ? "yes" : "no"'
-          docker-compose exec server npm test
+          docker-compose exec server npm run test
