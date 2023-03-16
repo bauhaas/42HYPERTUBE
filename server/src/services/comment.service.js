@@ -12,6 +12,15 @@ export const findAll = async () => {
   return comments;
 };
 
+export const getByMovieId = async (MovidId) => {
+  const commentsOfMovie = await db.comments.findAll({
+    where: {
+      MovieId: MovidId,
+    },
+  });
+  return commentsOfMovie;
+};
+
 export const create = async (commentData) => {
   logger.debug(commentData, 'CREATE');
   const user = await db.users.findByPk(commentData.UserId);
