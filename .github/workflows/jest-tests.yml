@@ -33,4 +33,10 @@ jobs:
           perl -E 'say "Is STDOUT a TTY?: ", -t STDOUT ? "yes" : "no"'
           docker compose version
           docker-compose --version
+          echo "listing npm packages:"
+          docker compose exec server npm list
+          echo "listing global npm packages:"
+          docker compose exec server npm -g list
+          echo "ls node_modules/.bin"
+          docker compose exec server ls node_modules/.bin
           docker compose exec server npm run test
