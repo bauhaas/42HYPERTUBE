@@ -15,18 +15,18 @@ export const Toggle = ({ checked }) => {
       />
       <div
         className={`flex h-6 w-12 items-center rounded-full ${
-          isChecked ? 'bg-green-500' : 'bg-gray-400'
+          isChecked ? 'bg-green-500' : 'bg-mid dark:bg-dark'
         } transition-transform duration-300 ease-in-out`}
       >
         <div
-          className={`flex h-6 w-6 transform place-items-center rounded-full bg-white  transition-transform duration-300 ease-in-out ${
+          className={`flex h-6 w-6 transform place-items-center rounded-full bg-light transition-transform duration-300 ease-in-out ${
             isChecked ? 'translate-x-full' : ''
           }`}
         >
           {isChecked ? (
-            <CheckIcon className={`h-8 w-8 text-green-500`} />
+            <CheckIcon className={`h-8 w-8 text-brand`} />
           ) : (
-            <CloseIcon className={`h-6 w-6 text-gray-400`} />
+            <CloseIcon className={`darK:text-dark h-6 w-6 text-mid`} />
           )}
         </div>
       </div>

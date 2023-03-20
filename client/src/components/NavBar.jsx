@@ -1,11 +1,13 @@
 import { Transition } from '@headlessui/react';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import NavBarItem from './NavBarItem';
 import SvgNavBar from './SvgNavBar';
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const mobileMenuRef = useRef(null); // Create a ref object using useRef
+
   return (
     <nav className="fixed top-0 z-50 w-screen bg-gray-800">
       <div className="mx-auto sm:px-6 lg:px-8">
@@ -60,7 +62,10 @@ function NavBar() {
       >
         {(ref) => (
           <div className="md:hidden" id="mobile-menu">
-            <div ref={ref} className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+            <div
+              ref={(node) => (mobileMenuRef.current = node)}
+              className="space-y-1 px-2 pt-2 pb-3 sm:px-3"
+            >
               <NavBarItem content="Movies" />
               <NavBarItem content="Bisous" />
               <NavBarItem content="User" />
