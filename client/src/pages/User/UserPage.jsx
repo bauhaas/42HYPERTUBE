@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-import User from '../../components/User';
+import Avatar from '../../components/Avatar';
+import { Movie } from './Components/movie';
 
 const movies = [
   {
@@ -50,18 +51,45 @@ export const UserPage = () => {
   if (!userData) {
     return <div>Chargement des données d'utilisateur...</div>;
   }
-
   const { name, email, picture } = userData;
   const { first, last } = name;
 
   return (
-    <div>
-      <User
-        username={`${first} ${last}`}
-        bio={email}
-        avatarUrl={picture.large}
-        movies={movies}
-      />
+    <div className="h-screen">
+      <div className="flex h-full flex-col md:h-1/3 md:flex-row ">
+        <div className="flex h-full w-full items-center  justify-center bg-gray-500 md:w-1/3">
+          <Avatar
+            imageAttribute={'h-48  rounded-full min-h-[20%]'}
+            imagePath={picture.medium}
+          />
+        </div>
+        <div className=" flex h-full  w-full  flex-col items-center justify-center bg-gray-300 md:w-2/3 ">
+          <h2 className="my-16 mb-2 text-4xl font-bold">
+            {first} {last}
+          </h2>
+          <p className="text-2xl leading-relaxed"></p>
+          <div> note moyenne</div>
+          <div> sur x notes</div>
+          <div className="mt-6 mb-6 text-center italic">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            voluptatum nesciunt labore? Inventore at a minus, sit architecto
+            expedita est! Tempore voluptatem ipsa commodi sit laudantium,
+            reprehenderit dicta? Similique, reprehenderit?
+          </div>
+        </div>
+      </div>
+      <div className="mx-12 mt-6 flex flex-col gap-4 md:mx-24">
+        {movies.map((movie) => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            description={movie.description}
+            rating={movie.rating}
+            coverImage={movie.coverImage}
+          />
+        ))}
+      </div>
     </div>
   );
 };

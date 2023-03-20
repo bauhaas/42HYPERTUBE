@@ -1,6 +1,8 @@
 import express from 'express';
 
-import users from '../../controllers/user.controller.js';
+import logger from '#config/logger';
+import users from '#controllers/user';
+import requireAuth from '#middlewares/authentication';
 
 const router = express.Router();
 
