@@ -54,4 +54,24 @@ export default {
       sendErrorResponse(res, err);
     }
   },
+
+  upload: async (req, res) => {
+    logger.debug('upload start');
+    userService.upload.single('file');
+    logger.debug('upload done');
+  },
+
+  picture: async (req, res) => {
+    try {
+      // todo: verify that jwt/auth's id corresponds to id
+      const id = req.params.id;
+      const filePath = { picture: req.file.path };
+
+      const data = await userService.picture(id, filePath);
+
+      res.status(200).send(data);
+    } catch (err) {
+      sendErrorResponse(res, err);
+    }
+  },
 };

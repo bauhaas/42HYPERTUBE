@@ -29,4 +29,16 @@ export default {
       sendErrorResponse(res, err);
     }
   },
+
+  delete: async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      const data = await commentService.deleteById(id);
+
+      res.sendStatus(204);
+    } catch (err) {
+      sendErrorResponse(res, err);
+    }
+  },
 };

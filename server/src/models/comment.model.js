@@ -4,6 +4,14 @@ const commentModel = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    UserId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
+    MovieId: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    },
   });
 
   return Comment;
