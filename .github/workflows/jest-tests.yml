@@ -25,10 +25,13 @@ jobs:
           echo POSTGRES_DB="$POSTGRES_DB" >> docker.env
           echo PGADMIN_DEFAULT_EMAIL="$PGADMIN_DEFAULT_EMAIL" >> docker.env
           echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
-      - name: Install Dependencies
-        run: docker-compose up --detach
-      - name: Npm run jest tests
+      - name: Launch containers
+        run: docker compose up #--detach
+      - name: Install server npm packages
         shell: 'script --quiet --return --command "bash {0}"'
         run: |
           docker compose exec server npm install
+      - name: Npm run jest tests
+        shell: 'script --quiet --return --command "bash {0}"'
+        run: |
           docker compose exec server npm run test
