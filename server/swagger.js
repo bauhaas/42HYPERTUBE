@@ -114,26 +114,42 @@ export default {
       },
       patch: {
         tags: ['users'],
-        summary: 'Update details of a specific user [TO COMPLETE]',
-      },
-    },
-    '/auth/login': {
-      post: {
-        tags: ['auth'],
-        summary: 'Authenticate with email/pass',
-        description: 'Authenticate a user with his email and password',
+        summary: 'patches details of a specific user',
+        description:
+          'Returns username, email address, profile picture URL of a specific user',
+        produces: ['application/json'],
         parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+          {
+            name: 'firstName',
+            in: 'formData',
+            required: false,
+            type: 'string',
+            default: 'John',
+          },
+          {
+            name: 'lastName',
+            in: 'formData',
+            required: false,
+            type: 'string',
+            default: 'Doe',
+          },
           {
             name: 'email',
             in: 'formData',
-            required: true,
+            required: false,
             type: 'string',
             default: 'john.doe@example.com',
           },
           {
             name: 'password',
             in: 'formData',
-            required: true,
+            required: false,
             type: 'string',
             default: 'root123Q!',
           },
@@ -141,6 +157,9 @@ export default {
         responses: {
           200: {
             description: 'Successful operation',
+            schema: {
+              $ref: '#/definitions/User',
+            },
           },
           400: {
             description: 'Invalid request',
@@ -151,55 +170,41 @@ export default {
         },
       },
     },
-    '/auth/facebook': {
-      get: {
-        tags: ['auth'],
-        summary: 'Authenticate with Facebook',
-        description: 'Authenticate a user using Facebook.',
+    '/users/{id}/picture': {
+      put: {
+        tags: ['users'],
+        summary: 'upload new profile picture of a specific user',
+        description:
+          'Returns username, email address, profile picture URL of a specific user',
+        consumes: ['multipart/form-data'],
+        produces: ['application/json'],
         parameters: [
-          // Facebook-specific parameters here
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+          {
+            name: 'file',
+            in: 'formData',
+            required: true,
+            type: 'file',
+          },
         ],
         responses: {
-          // Facebook-specific responses here
-        },
-      },
-    },
-    '/auth/google': {
-      get: {
-        tags: ['auth'],
-        summary: 'Authenticate with Google',
-        description: 'Authenticate a user using Google.',
-        parameters: [
-          // Google-specific parameters here
-        ],
-        responses: {
-          // Google-specific responses here
-        },
-      },
-    },
-    '/auth/42': {
-      get: {
-        tags: ['auth'],
-        summary: 'Authenticate with 42',
-        description: 'Authenticate a user using 42.',
-        parameters: [
-          // 42-specific parameters here
-        ],
-        responses: {
-          // 42-specific responses here
-        },
-      },
-    },
-    '/auth/github': {
-      get: {
-        tags: ['auth'],
-        summary: 'Authenticate with Github',
-        description: 'Authenticate a user using Github.',
-        parameters: [
-          // Github-specific parameters here
-        ],
-        responses: {
-          // Github-specific responses here
+          200: {
+            description: 'Successful operation',
+            schema: {
+              $ref: '#/definitions/User',
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          404: {
+            description: 'Element not found',
+          },
         },
       },
     },
@@ -317,6 +322,42 @@ export default {
           },
           400: {
             description: 'Invalid request',
+          },
+        },
+      },
+    },
+    '/comments/{id}': {
+      delete: {
+        tags: ['comments'],
+        summary: 'Deletes the comment {id}',
+        description:
+          'Returns a 204 No Content if the comment was succesfully deleted',
+        parameters: [
+          {
+            name: 'id',
+            in: 'path',
+            required: true,
+            type: 'integer',
+          },
+        ],
+        responses: {
+          204: {
+            description: 'Successful operation No Content',
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/definitions/Comments',
+              },
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          403: {
+            description: "Forbidden, can't delete",
+          },
+          404: {
+            description: 'Element not found',
           },
         },
       },

@@ -13,7 +13,6 @@ export default new GitHubStrategy(
     callbackURL: 'http://localhost:3000/auth/github/callback',
   },
   async function (accessToken, refreshToken, profile, done) {
-    console.log(profile);
     const user = await userService.findOrCreate(
       'github',
       profile.id,
@@ -21,7 +20,6 @@ export default new GitHubStrategy(
       profile.displayName.split(' ')[0],
       profile.displayName.split(' ')[1],
     );
-    logger.debug(user);
     return done(null, user);
   },
 );

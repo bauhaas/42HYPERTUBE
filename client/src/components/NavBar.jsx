@@ -11,6 +11,8 @@ import SvgNavBar from './SvgNavBar';
 
 function Nav() {
   const [isOpen, setIsOpen] = useState(false);
+  const items = ['Profile', 'Settings', 'Log Out'];
+
   return (
     <nav className="bg-brand">
       <div className="max-w-12xl mx-auto px-2 sm:px-6">

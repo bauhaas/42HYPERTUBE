@@ -12,6 +12,10 @@ const userModel = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    picture: {
+      type: Sequelize.STRING,
+      allowNull: true,
+    },
     password: {
       type: Sequelize.STRING,
       allowNull: false,

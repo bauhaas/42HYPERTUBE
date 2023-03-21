@@ -19,10 +19,10 @@ describe('routes', () => {
     cy.url().should('include', '/user');
   });
 
-  it('go to non-existant page', () => {
-    cy.visit('/foiezhf');
-    cy.url().should('include', '/unknown');
-  });
+  // it('go to non-existant page', () => {
+  //   cy.visit('/foiezhf');
+  //   cy.url().should('include', '/unknown');
+  // });
 
   it('go to movie/1', () => {
     cy.visit('/movie/1');

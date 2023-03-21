@@ -15,18 +15,17 @@ export default new LocalStrategy(
     logger.debug('local authentication');
     const user = await userService.findOneByEmail(username);
 
-    logger.debug('found user on local auth');
+    logger.debug('found user for local authentication');
     if (!user) {
       return done(null, false);
     }
 
-    logger.debug(password, user.password);
     const hasValidPassword = await userService.verifypassword(
       password,
       user.password,
     );
 
-    logger.debug(hasValidPassword);
+    logger.debug('has valid password ?', hasValidPassword);
 
     if (!hasValidPassword) {
       logger.debug('invalid pass');

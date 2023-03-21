@@ -1,4 +1,7 @@
+import util from 'util';
+
 import bcrypt from 'bcryptjs';
+import multer from 'multer';
 import { Op } from 'sequelize';
 
 import logger from '#config/logger';
@@ -47,15 +50,6 @@ export const verifypassword = async (password, storedPassword) => {
   return true;
 };
 
-export const create = async (userData) => {
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(userData.password, salt);
-  userData.password = hash;
-  logger.debug(userData, 'CREATE');
-  const newUser = await db.users.create(userData);
-  return newUser;
-};
-
 export const findOrCreate = async (
   provider,
   id,
@@ -89,4 +83,60 @@ export const findOrCreate = async (
   }
 
   return user;
+};
+
+export const create = async (userData) => {
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(userData.password, salt);
+  userData.password = hash;
+  logger.debug(userData, 'CREATE');
+  const newUser = await db.users.create(userData);
+  return newUser;
+};
+
+export const patch = async (id, patchData) => {
+  const user = await db.users.findByPk(id);
+  if (!user) {
+    throw new NotFoundError('User not found');
+  }
+
+  if (patchData.password !== undefined) {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(patchData.password, salt);
+    patchData.password = hash;
+  }
+  logger.debug(patchData, 'PATCH');
+  const newUser = await db.users.update(patchData, {
+    where: { id: id },
+  });
+  logger.debug(newUser, 'PATCH');
+  return newUser;
+};
+
+const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+
+export const upload = multer({
+  dest: 'uploads/',
+  fileFilter: async (req, file, cb) => {
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb({ message: 'Invalid file type', status: 400 }, false);
+    }
+    cb(null, true);
+  },
+});
+
+export const errorHandler = (error, req, res, next) => {
+  if (error) {
+    return res.status(error.status || 500).send({ message: error.message });
+  }
+  next();
+};
+
+export const picture = async (id, filePath) => {
+  // Save the picture's path to the database
+  const result = await db.users.update(filePath, {
+    where: { id: id },
+  });
+  // Send the file back to the client
+  return result;
 };
