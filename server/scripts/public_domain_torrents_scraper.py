@@ -39,10 +39,18 @@ def scrape_publicdomaintorrents(url: str):
 
 
 def main() -> None:
+	# As a warning, this entire script will likely take around an hour to finish.
+	# This is because the repeated calls to imdb are quite slow.
 	filename = 'free-movies-publicdomaintorrents.json'
+	# Taken from this url:
+	file_url = 'https://github.com/petterreinholdtsen/public-domain-free-imdb/blob/master/free-movies-publicdomaintorrents.json'
 	results = {}
-	with open(filename, 'r') as pickle_handle:
-		file = json.load(pickle_handle)
+	try:
+		with open(filename, 'r') as pickle_handle:
+			file = json.load(pickle_handle)
+	except FileNotFoundError:
+		print(f'Please download this file: {file_url} and save it as {filename} in your cwd. Merci!', file=sys.stderr)
+		exit(1)
 	for i, (url, obj) in enumerate(file.items()):
 		print(f'{i}: {url=}, {obj=}', file=sys.stderr)
 		freenessurl, status, title = obj['freenessurl'], obj['status'], obj['title']
