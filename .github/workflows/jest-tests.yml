@@ -33,6 +33,8 @@ jobs:
           perl -E 'say "Is STDOUT a TTY?: ", -t STDOUT ? "yes" : "no"'
           docker compose version
           docker-compose --version
+          echo "installing npm packages:"
+          docker compose exec server npm install
           echo "listing npm packages:"
           docker compose exec server npm list
           echo "listing global npm packages:"
