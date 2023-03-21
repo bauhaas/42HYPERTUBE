@@ -27,10 +27,6 @@ jobs:
           echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
       - name: Launch containers
         run: docker compose up --detach --wait && sleep 60
-      #      - name: Install server npm packages
-      #        shell: 'script --quiet --return --command "bash {0}"'
-      #        run: |
-      #          docker compose exec server npm install
       - name: Npm run jest tests
         shell: 'script --quiet --return --command "bash {0}"'
         run: |
