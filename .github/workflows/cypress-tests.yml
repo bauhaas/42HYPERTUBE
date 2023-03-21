@@ -31,7 +31,7 @@ jobs:
         uses: cypress-io/github-action@v5.1.0
         with:
           working-directory: client
-          # install: true
-          start: npm install && npm start
+          install: true
+          start: npm start
           wait-on: "http://localhost:5173"
           # start: docker-compose exec client npm run dev
