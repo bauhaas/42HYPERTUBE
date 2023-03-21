@@ -7,6 +7,9 @@ import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
 import { FortyTwoIcon } from '../../assets/FortyTwoIcon';
 import { Toggle } from '../../components/Toggle';
+import { ActionHeader } from './Components/ActionHeader';
+import { TabHeader } from './Components/TabHeader';
+import { ThirdPartyButton } from './Components/ThirdPartyButton';
 
 export const ConnectionTab = () => {
   const { t } = useTranslation();
@@ -27,6 +30,11 @@ export const ConnectionTab = () => {
     Google: GoogleIcon,
     Facebook: FacebookIcon,
     42: FortyTwoIcon,
+  };
+
+  const isAlreadySync = (provider) => {
+    if (connections.find((x) => x.provider === provider)) return true;
+    return false;
   };
 
   const syncWith3rdParty = (provider) => {
@@ -50,9 +58,7 @@ export const ConnectionTab = () => {
 
   return (
     <>
-      <h2 className="mb-5 text-2xl font-bold dark:text-light">
-        <Trans i18nKey="settings.connectionsTab" />
-      </h2>
+      <TabHeader i18nKey="settings.connectionsTab" />
       <div className="flex flex-col">
         <div className="mb-4 rounded-lg bg-mid p-4 dark:bg-dark">
           <h3 className="mb-2 text-sm font-bold dark:text-light">
@@ -62,16 +68,21 @@ export const ConnectionTab = () => {
             <Trans i18nKey="settings.connections.addAccountDesc" />
           </div>
           <div className="mt-4 flex gap-2">
-            {Object.entries(providerIconMap).map(
-              ([provider, IconComponent]) => (
-                <button
-                  key={provider}
-                  className="flex h-12 w-12 items-center justify-center rounded-lg bg-light-hover hover:bg-light focus-visible:outline-none focus-visible:outline-offset-0 focus-visible:outline-blue-500 dark:bg-mid-hover dark:hover:bg-mid"
-                  onClick={() => syncWith3rdParty(provider)}
-                >
-                  <IconComponent className={`h-8 w-8 dark:text-light`} />
-                </button>
-              ),
+            {connections.length === 4 ? (
+              <div className="text-sm font-bold">
+                You are connected with all 3rd parties available
+              </div>
+            ) : (
+              Object.entries(providerIconMap).map(
+                ([provider, IconComponent]) => (
+                  <ThirdPartyButton
+                    provider={provider}
+                    disabled={isAlreadySync(provider)}
+                    syncWith3rdParty={syncWith3rdParty}
+                    IconComponent={IconComponent}
+                  />
+                ),
+              )
             )}
           </div>
         </div>
