@@ -7,15 +7,14 @@ import BurgerMenu from './BurgerMenu';
 import DropdownMenu from './DropDownMenu';
 import NavBarItem from './NavBarItem';
 import SearchBar from './SearchBar';
-import SvgNavBar from './SvgNavBar';
 
-function Nav() {
+function NavBar({ avatarUrl }) {
   const [isOpen, setIsOpen] = useState(false);
   const items = ['Profile', 'Settings', 'Log Out'];
 
   return (
     <nav className="bg-brand">
-      <div className="max-w-12xl mx-auto px-2 sm:px-6">
+      <div className=" sm:px-6">
         <div className="mx-4 flex items-center justify-between">
           <Avatar
             imageAttribute={'h-8 w-8'}
@@ -27,7 +26,10 @@ function Nav() {
                 <SearchBar />
                 <NavBarItem content="Movies" />
                 <NavBarItem content="Movies" />
-                <DropdownMenu items={['Profile', 'Settings', 'Log Out']} />
+                <DropdownMenu
+                  items={['Profile', 'Settings', 'Log Out']}
+                  avatarUrl={avatarUrl}
+                />
               </div>
             </div>
           </div>
@@ -41,4 +43,4 @@ function Nav() {
   );
 }
 
-export default Nav;
+export default NavBar;

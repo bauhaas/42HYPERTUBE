@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
+import Movie from '../../components/Movie';
+import NavBar from '../../components/NavBar';
 import User from '../../components/User';
 
 const movies = [
@@ -24,12 +26,48 @@ const movies = [
   },
   {
     id: 3,
-    title: 'The Dark Knight',
+    title: 'The Shawshank Redemption',
     description:
-      'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
-    rating: 9.0,
+      'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+    rating: 9.3,
     coverImage:
-      'https://upload.wikimedia.org/wikipedia/en/8/8a/Dark_Knight.jpg',
+      'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg',
+  },
+  {
+    id: 4,
+    title: 'The Godfather',
+    description:
+      'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+    rating: 9.2,
+    coverImage:
+      'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg',
+  },
+  {
+    id: 5,
+    title: 'The Godfather',
+    description:
+      'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+    rating: 9.2,
+    coverImage:
+      'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg',
+  },
+  {
+    id: 6,
+    title: 'The Shawshank Redemption',
+    description:
+      'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+    rating: 9.3,
+    coverImage:
+      'https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg',
+  },
+  {
+    id: 7,
+    title: 'The Godfather',
+    description:
+      'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+    rating: 9.2,
+    coverImage:
+      'https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg',
   },
 ];
 
@@ -53,15 +91,27 @@ export const UserPage = () => {
 
   const { name, email, picture } = userData;
   const { first, last } = name;
-
   return (
-    <div>
+    <div className="flex-col ">
+      <NavBar avatarUrl={picture.large} />
       <User
         username={`${first} ${last}`}
         bio={email}
         avatarUrl={picture.large}
         movies={movies}
       />
+      <div className="flex flex-row flex-wrap  justify-center ">
+        {movies.map((movie) => (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            title={movie.title}
+            description={movie.description}
+            rating={movie.rating}
+            coverImage={movie.coverImage}
+          />
+        ))}
+      </div>
     </div>
   );
 };

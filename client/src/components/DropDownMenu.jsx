@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 
-const DropdownMenu = ({ items }) => {
+const DropdownMenu = ({ items, avatarUrl }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -14,7 +14,7 @@ const DropdownMenu = ({ items }) => {
       >
         <img
           className="h-full w-full rounded-full "
-          src="https://avatars.githubusercontent.com/u/58028782?s=400&amp;u=ce6e6e4b12fc27edf478833298ec36f1ec1d3006&amp;v=4"
+          src={avatarUrl}
           alt="profile pic"
         />
       </button>
