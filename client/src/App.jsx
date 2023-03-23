@@ -21,7 +21,6 @@ function App() {
   return (
     <>
       <AlertContext.Provider value={{ alert, setAlert }}>
-        <NavBar />
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />

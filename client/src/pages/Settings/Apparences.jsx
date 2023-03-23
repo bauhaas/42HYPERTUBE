@@ -3,6 +3,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import { BsCheck as CheckIcon, BsX as CloseIcon } from 'react-icons/bs';
 
 import Avatar from '../../components/Avatar';
+import { ActionHeader } from './Components/ActionHeader';
+import { TabHeader } from './Components/TabHeader';
 
 export const ApparenceTab = () => {
   const { t } = useTranslation();
@@ -33,12 +35,8 @@ export const ApparenceTab = () => {
 
   return (
     <>
-      <h2 className="mb-5 text-2xl font-bold dark:text-light">
-        <Trans i18nKey="settings.apparencesTab" />
-      </h2>
-      <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-light">
-        Choose your accent color
-      </h3>
+      <TabHeader i18nKey="settings.apparencesTab" />
+      <ActionHeader i18nKey="settings.apparences.accentColorLabel" />
       <div className="flex gap-2">
         {COLORS.map((color) => (
           <div
@@ -75,9 +73,7 @@ export const ApparenceTab = () => {
           </div>
         </div>
       </div>
-      <h3 className="mb-2 text-xs font-bold uppercase tracking-tight dark:text-light">
-        Choose your theme
-      </h3>
+      <ActionHeader i18nKey="settings.apparences.themeLabel" />
       <div className="flex gap-2 ">
         <label>
           <input
