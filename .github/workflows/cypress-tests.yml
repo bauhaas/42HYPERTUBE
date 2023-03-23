@@ -1,0 +1,34 @@
+name: Cypress Tests
+
+on: [push]
+
+jobs:
+  cypress-run:
+    name: cypress
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+      - name: Set up docker.env
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          PGADMIN_DEFAULT_EMAIL: ${{ secrets.PGADMIN_DEFAULT_EMAIL }}
+          PGADMIN_DEFAULT_PASSWORD: ${{ secrets.PGADMIN_DEFAULT_PASSWORD }}
+        run: |
+          touch docker.env
+          echo POSTGRES_USER="$POSTGRES_USER" >> docker.env
+          echo POSTGRES_PASSWORD="$POSTGRES_PASSWORD" >> docker.env
+          echo POSTGRES_DB="$POSTGRES_DB" >> docker.env
+          echo PGADMIN_DEFAULT_EMAIL="$PGADMIN_DEFAULT_EMAIL" >> docker.env
+          echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
+      - name: Cypress run
+        uses: cypress-io/github-action@v5.1.0
+        with:
+          working-directory: client
+          install: true
+          start: npm run dev
+          wait-on: "http://localhost:5173"
