@@ -12,7 +12,6 @@ import {
   UserPage,
 } from '@internals/pages';
 
-import NavBar from './components/NavBar';
 import { AlertContext } from '/src/contexts/alert';
 
 function App() {

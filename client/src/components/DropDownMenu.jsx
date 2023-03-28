@@ -27,7 +27,7 @@ const DropdownMenu = ({ items, avatarUrl }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="absolute right-0 top-16 z-50 rounded-b-3xl bg-brand shadow-lg">
+          <div className="absolute right-0 top-16 z-50 rounded-b-3xl bg-brand shadow-lg dark:bg-dark">
             <ul className="">
               {items.slice(0).map((item, index) => (
                 <li
