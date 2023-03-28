@@ -13,7 +13,7 @@ function NavBar({ avatarUrl }) {
   const items = ['Profile', 'Settings', 'Log Out'];
 
   return (
-    <nav className="bg-brand">
+    <nav className="bg-brand dark:bg-dark dark:text-light">
       <div className=" sm:px-6">
         <div className="mx-4 flex items-center justify-between">
           <Avatar

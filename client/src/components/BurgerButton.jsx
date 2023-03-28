@@ -7,7 +7,7 @@ function BurgerButton({ isOpen, setIsOpen }) {
     <button
       onClick={() => setIsOpen(!isOpen)}
       type="button"
-      className="hover:text- inline-flex items-center justify-center rounded-md bg-brand p-2 hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 "
+      className="hover:text- inline-flex items-center justify-center rounded-md  p-2 hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 dark:hover:bg-dark-hover "
       aria-controls="mobile-menu"
       aria-expanded="false"
     >
