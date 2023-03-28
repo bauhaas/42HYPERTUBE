@@ -203,8 +203,8 @@ export const Home = () => {
                 key={pageNum}
                 className={`rounded-lg px-4 py-2 ${
                   pageNum === currentPage
-                    ? 'bg-brand text-white'
-                    : 'bg-white text-gray-800 hover:bg-gray-300'
+                    ? 'bg-white text-gray-800'
+                    : 'bg-brand text-gray-800 hover:bg-gray-300'
                 }`}
                 onClick={() => handlePageClick(pageNum)}
               >
