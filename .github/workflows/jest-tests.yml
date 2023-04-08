@@ -1,0 +1,33 @@
+name: Jest Tests
+
+on: [push]
+
+jobs:
+  jest-run:
+    name: jest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+      - name: Set up docker.env
+        env:
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          PGADMIN_DEFAULT_EMAIL: ${{ secrets.PGADMIN_DEFAULT_EMAIL }}
+          PGADMIN_DEFAULT_PASSWORD: ${{ secrets.PGADMIN_DEFAULT_PASSWORD }}
+        run: |
+          touch docker.env
+          echo POSTGRES_USER="$POSTGRES_USER" >> docker.env
+          echo POSTGRES_PASSWORD="$POSTGRES_PASSWORD" >> docker.env
+          echo POSTGRES_DB="$POSTGRES_DB" >> docker.env
+          echo PGADMIN_DEFAULT_EMAIL="$PGADMIN_DEFAULT_EMAIL" >> docker.env
+          echo PGADMIN_DEFAULT_PASSWORD="$PGADMIN_DEFAULT_PASSWORD" >> docker.env
+      - name: Launch containers
+        run: docker compose up --detach --wait && sleep 60
+      - name: Npm run jest tests
+        shell: 'script --quiet --return --command "bash {0}"'
+        run: |
+          docker compose exec server npm run test
