@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { BsCheck as CheckIcon, BsX as CloseIcon } from 'react-icons/bs';
 
-import Avatar from '../../components/Avatar';
+import { Avatar } from '../../components/ui/Avatar';
 import { ActionHeader } from './Components/ActionHeader';
 import { TabHeader } from './Components/TabHeader';
 
@@ -52,8 +52,10 @@ export const ApparenceTab = () => {
         <div className="flex flex-col gap-2 ">
           <div className="dark:text-light">Avatar</div>
           <Avatar
-            imageAttribute={'h-10 w-10 rounded-full ring-2 ring-blue-500'}
-            imagePath="https://randomuser.me/api/portraits/men/75.jpg"
+            rounded
+            size="md"
+            // imageAttribute={'h-10 w-10 rounded-full ring-2 ring-blue-500'}
+            src="https://randomuser.me/api/portraits/men/75.jpg"
           />
         </div>
         <div className="flex flex-col">

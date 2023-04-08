@@ -1,6 +1,8 @@
 import { Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 
+import { Avatar } from './ui/Avatar';
+
 const DropdownMenu = ({ items, avatarUrl }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -12,9 +14,10 @@ const DropdownMenu = ({ items, avatarUrl }) => {
         type="button"
         className="inline-flex h-10 w-10 items-center justify-center rounded-full border-2 border-white text-white focus:outline-none"
       >
-        <img
-          className="h-full w-full rounded-full "
-          src={avatarUrl}
+        <Avatar
+          rounded
+          size="sm"
+          src="https://randomuser.me/api/portraits/men/75.jpg"
           alt="profile pic"
         />
       </button>

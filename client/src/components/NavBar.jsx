@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Avatar from './Avatar';
 import BurgerButton from './BurgerButton';
 import BurgerMenu from './BurgerMenu';
 import DropdownMenu from './DropDownMenu';
 import NavBarItem from './NavBarItem';
 import SearchBar from './SearchBar';
+import { Avatar } from './ui/Avatar';
 
 function NavBar({ avatarUrl }) {
   const [isOpen, setIsOpen] = useState(false);

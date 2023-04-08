@@ -4,8 +4,8 @@ import videojs from 'video.js';
 
 import 'video.js/dist/video-js.css';
 
-import Avatar from '../../components/Avatar';
 import Navbar from '../../components/NavBar';
+import { Avatar } from '../../components/ui/Avatar';
 
 export const VideoJS = (props) => {
   const videoRef = useRef(null);

@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
 
-import Avatar from '../../components/Avatar';
-import { Button } from '../../components/Button';
+import { Avatar } from '../../components/ui/Avatar';
+import { Button } from '../../components/ui/Button';
 import { ActionHeader } from './Components/ActionHeader';
 import { TabHeader } from './Components/TabHeader';
 
@@ -18,10 +18,11 @@ export const AccountTab = () => {
         <div className="h-24 rounded-t-md bg-light-focus"></div>
         <div className="relative  flex flex-col gap-4 rounded-b-md bg-mid p-4 pt-24 dark:bg-dark">
           <div className="absolute -top-10 flex flex-row">
-            <button className=" w-fit rounded-full border-8 border-mid dark:border-dark">
+            <button className="rounded-full border-8 border-mid dark:border-dark">
               <Avatar
-                imageAttribute={'h-24 w-24 rounded-full'}
-                imagePath="https://randomuser.me/api/portraits/men/75.jpg"
+                rounded
+                size="xxl"
+                src="https://randomuser.me/api/portraits/men/75.jpg"
               />
             </button>
             <div className="self-center p-1 font-bold dark:text-light">
