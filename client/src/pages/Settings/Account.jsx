@@ -1,12 +1,16 @@
 import { Trans, useTranslation } from 'react-i18next';
 
 import Avatar from '../../components/Avatar';
+import { Button } from '../../components/Button';
 import { ActionHeader } from './Components/ActionHeader';
 import { TabHeader } from './Components/TabHeader';
 
 export const AccountTab = () => {
   const { t } = useTranslation();
 
+  const c = () => {
+    alert(1);
+  };
   return (
     <>
       <TabHeader i18nKey="settings.accountTab" />
@@ -63,12 +67,12 @@ export const AccountTab = () => {
 
       <div class="my-2 border-t-2 border-mid dark:border-light"></div>
       <ActionHeader i18nKey="settings.account.passwordLabel" />
-      <button className="mt-4 mb-7 rounded-md bg-brand px-4 py-2 hover:bg-brand-hover">
+      <Button variant="primary">
         <div className="dark:text-light">
           {' '}
           <Trans i18nKey="settings.account.passwordButton" />
         </div>
-      </button>
+      </Button>
       <div class="my-2 border-t-2 border-mid dark:border-light"></div>
       <div id="section">
         <ActionHeader i18nKey="settings.account.deleteAccountLabel" />
@@ -77,12 +81,12 @@ export const AccountTab = () => {
             <Trans i18nKey="settings.account.deleteAccountDesc" />
           </div>
           <div className="flex gap-4">
-            <button className="rounded-lg bg-red-500 py-2 px-4 hover:bg-red-600 dark:text-light">
+            <Button variant="danger">
               <Trans i18nKey="settings.account.desactivateButton" />
-            </button>
-            <button className="rounded-lg border-2 border-red-500 py-2 px-4 transition delay-150 ease-in-out hover:bg-red-500 dark:text-light ">
+            </Button>
+            <Button variant="danger" outline>
               <Trans i18nKey="settings.account.deleteButton" />
-            </button>
+            </Button>
           </div>
         </div>
       </div>

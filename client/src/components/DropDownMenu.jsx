@@ -20,7 +20,7 @@ const DropdownMenu = ({ items }) => {
       {isOpen && (
         <div className="absolute right-0  z-50 bg-brand shadow-lg">
           <ul className="py-2.5">
-            {items.slice(0).map((item) => (
+            {items.map((item) => (
               <li key={item} className="right-0">
                 <a
                   href="#"
