@@ -11,6 +11,7 @@ import dbConfig from '#config/db';
 import logger from '#config/logger';
 import authRoutes from '#routes/auth';
 import commentsRoutes from '#routes/comments';
+import subtitlesRoutes from '#routes/subtitles';
 import usersRoutes from '#routes/users';
 import facebookStrategy from '#strategies/facebook';
 import fortytwoStrategy from '#strategies/fortytwo';
@@ -114,6 +115,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/auth', authRoutes);
+app.use('/subtitles', subtitlesRoutes);
 app.use('/users', usersRoutes);
 app.use('/comments', commentsRoutes);
 

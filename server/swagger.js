@@ -236,7 +236,7 @@ export default {
     '/movies/{id}': {
       get: {
         tags: ['movies'],
-        summary: 'Rerturns details of a specific movie',
+        summary: 'Returns details of a specific movie',
         description: 'Authenticate a user using Github.',
         parameters: [
           {
@@ -251,6 +251,60 @@ export default {
             description: 'Successful operation',
             schema: {
               $ref: '#/definitions/Movies',
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          404: {
+            description: 'Element not found',
+          },
+        },
+      },
+    },
+    '/subtitles': {
+      get: {
+        tags: ['subtitles'],
+        summary: 'Returns list of all subtitles',
+        description: 'Description.',
+        parameters: [],
+        responses: {
+          200: {
+            description: 'Successful operation',
+            schema: {
+              type: 'array',
+              items: {
+                $ref: '#/definitions/Subtitles',
+              },
+            },
+          },
+          400: {
+            description: 'Invalid request',
+          },
+          404: {
+            description: 'Element not found',
+          },
+        },
+      },
+    },
+    '/subtitles/{id}': {
+      get: {
+        tags: ['subtitles'],
+        summary: 'Returns details of a specific subtitle',
+        description: 'Description.',
+        parameters: [
+          {
+            name: 'imdb_id',
+            in: 'path',
+            required: true,
+            type: 'string',
+          },
+        ],
+        responses: {
+          200: {
+            description: 'Successful operation',
+            schema: {
+              $ref: '#/definitions/Subtitles',
             },
           },
           400: {
