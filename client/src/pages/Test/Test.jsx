@@ -1,10 +1,44 @@
+import * as Dialog from '@radix-ui/react-dialog';
 import axios from 'axios';
 import { useState } from 'react';
+import { BsCheck as CheckIcon, BsX as CloseIcon } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { isEmail, isStrongPassword } from 'validator';
 
 import { Toggle } from '../../components/Toggle';
+import { Button } from '../../components/ui/Button';
 import { FormField } from '../Signin/Components/FormField';
+
+const DialogDemo = () => {
+  return (
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
+        <Button>Edit profile</Button>
+      </Dialog.Trigger>
+      <Dialog.Portal>
+        <Dialog.Overlay className="fixed inset-0" />
+        <Dialog.Content className="w-90vw  max-w-450px max-h-85vh p-25 fixed top-1/2 left-1/2 flex min-w-[50%] -translate-x-1/2 -translate-y-1/2 transform flex-col rounded-lg bg-slate-200 p-4">
+          <div className="flex justify-between">
+            <Dialog.Title className="textl-lg pb-2 font-bold">
+              Edit profile
+            </Dialog.Title>
+            <Dialog.Close asChild>
+              <button className="" aria-label="Close">
+                <CloseIcon className="h-6 w-6" />
+              </button>
+            </Dialog.Close>
+          </div>
+          <Dialog.Description className="pb-4 text-sm">
+            This is a testing modal.
+          </Dialog.Description>
+          <Dialog.Close asChild className="self-end">
+            <Button variant="success">Confirm</Button>
+          </Dialog.Close>
+        </Dialog.Content>
+      </Dialog.Portal>
+    </Dialog.Root>
+  );
+};
 
 export const Test = () => {
   const initialErrors = {
@@ -124,6 +158,7 @@ export const Test = () => {
             >
               go to signin
             </Link>
+            <DialogDemo />
           </div>
           <div className="w-1/2 bg-red-500">
             <div className="flex flex-col gap-4" data-cy="users-map">

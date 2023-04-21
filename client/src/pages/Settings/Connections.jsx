@@ -7,6 +7,7 @@ import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
 import { FortyTwoIcon } from '../../assets/FortyTwoIcon';
 import { Toggle } from '../../components/Toggle';
+import { Button } from '../../components/ui/Button';
 import { ActionHeader } from './Components/ActionHeader';
 import { TabHeader } from './Components/TabHeader';
 import { ThirdPartyButton } from './Components/ThirdPartyButton';
@@ -129,6 +130,7 @@ export const ConnectionTab = () => {
           })}
         </div>
       </div>
+      {/* <DialogDemo /> */}
     </>
   );
 };
